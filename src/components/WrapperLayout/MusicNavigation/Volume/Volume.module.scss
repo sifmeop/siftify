@@ -1,0 +1,41 @@
+.volume {
+  @apply flex items-center gap-7;
+}
+
+.volumeRange {
+  width: 15rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #dedede;
+  border-radius: 1.875rem;
+  cursor: pointer;
+  outline: none;
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 0.625rem;
+  }
+  &::-ms-track {
+    appearance: none;
+    height: 0.625rem;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* @apply bg-primary-blue; */
+    background-color: #29a7fd;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 1.875rem;
+    margin-top: -0.16rem;
+  }
+  &:active::-webkit-slider-thumb {
+    background-color: #14a0ff;
+  }
+  &::-ms-thumb {
+    appearance: none;
+    @apply bg-primary-blue;
+    height: 0.625rem;
+    width: 0.625rem;
+    border-radius: 1.875rem;
+  }
+}

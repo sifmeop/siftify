@@ -1,0 +1,7 @@
+.account {
+  @apply relative flex cursor-pointer items-center gap-3;
+}
+
+.avatar {
+  @apply h-12 w-12 rounded-full bg-gray-500;
+}

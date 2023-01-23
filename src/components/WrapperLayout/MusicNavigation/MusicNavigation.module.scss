@@ -1,0 +1,54 @@
+.navigation {
+  @apply fixed bottom-0 z-50 w-screen bg-white shadow;
+  height: 6.875rem;
+  padding-right: 50px;
+}
+
+.progress {
+  @apply relative w-screen;
+  height: 0.625rem;
+  background-color: #dedede;
+}
+
+.progressCompleted {
+  @apply absolute bg-primary-blue;
+  height: 0.625rem;
+  width: 60%;
+}
+
+.controlPanel {
+  @apply grid grid-cols-3;
+  grid-template-columns: [info-start] 1fr [control-center] 1fr [volume-end] 1fr;
+}
+
+.infoArtist {
+  @apply flex items-center gap-4;
+}
+
+.title {
+  @apply text-2xl;
+  letter-spacing: 0.05em;
+  color: #4a4b52;
+}
+
+.featuring {
+  @apply text-xl font-medium;
+  color: #949497;
+}
+
+.control {
+  @apply flex items-center justify-center gap-4;
+  &:not(:nth-child(2)) {
+    > svg path {
+      stroke: #8a8f96;
+    }
+  }
+}
+
+.volume {
+  @apply flex items-center justify-end gap-4;
+  > svg path {
+    stroke: #8a8f96;
+    stroke-width: 2.5;
+  }
+}

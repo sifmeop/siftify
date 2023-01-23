@@ -1,0 +1,49 @@
+@import 'styles/mixins';
+
+.track {
+  @apply mb-3 grid items-center rounded-lg p-2;
+  @include gridTable;
+  transition: all 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
+  &:hover {
+    @apply bg-white;
+    .trackIndex {
+      @apply hidden;
+    }
+    .control {
+      @apply block;
+    }
+    .equalizer {
+      display: none !important;
+    }
+    .favorite {
+      @apply visible;
+    }
+  }
+  &:not(:last-child) {
+    @apply mb-4;
+  }
+}
+
+.trackIndex {
+  @apply text-base;
+}
+
+.control {
+  @apply hidden cursor-pointer text-center;
+}
+
+.featuring {
+  @apply text-base font-medium text-tertiary;
+}
+
+.equalizer {
+  @apply mx-auto hidden cursor-pointer;
+}
+
+.favorite {
+  @apply invisible cursor-pointer;
+}
+
+.duration {
+  @apply text-center text-base;
+}

@@ -1,0 +1,12 @@
+.dropdown {
+  @apply absolute top-full left-0 z-10 w-full rounded-lg bg-slate-200 p-2 text-left hover:bg-slate-300 active:bg-slate-400;
+  top: calc(100% + 0.3rem);
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.item {
+  @apply block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100;
+  &:not(:last-child) {
+    @apply mb-2;
+  }
+}

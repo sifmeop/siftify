@@ -1,0 +1,15 @@
+.artist {
+  @apply rounded-lg p-5;
+  background-color: #f0f0f0;
+  &:not(:last-child) {
+    @apply mb-5;
+  }
+}
+
+.artistInfo {
+  @apply mb-3 flex items-end gap-5;
+}
+
+.name {
+  @apply text-2xl font-bold;
+}

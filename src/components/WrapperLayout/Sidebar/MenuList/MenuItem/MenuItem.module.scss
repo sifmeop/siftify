@@ -1,0 +1,15 @@
+.list:not(:last-child) {
+  @apply mb-3;
+}
+
+.link {
+  @apply flex items-center gap-5 p-2;
+}
+
+.active {
+  @apply font-bold text-primary-blue;
+  & svg path {
+    stroke: currentColor;
+    stroke-width: 3;
+  }
+}

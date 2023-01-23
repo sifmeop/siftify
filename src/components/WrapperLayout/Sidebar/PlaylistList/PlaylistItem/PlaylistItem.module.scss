@@ -1,0 +1,15 @@
+.list:not(:last-child) {
+  @apply mb-3;
+}
+
+.link {
+  @apply p-2 text-base font-normal;
+}
+
+.active {
+  @apply font-bold text-primary-blue;
+  & svg path {
+    stroke: currentColor;
+    stroke-width: 3;
+  }
+}

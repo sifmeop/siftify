@@ -1,0 +1,8 @@
+.logo {
+  @apply flex items-center gap-5;
+}
+
+.name {
+  @apply text-3xl font-bold tracking-wider;
+  font-weight: 700;
+}

@@ -1,0 +1,10 @@
+@import 'functions';
+
+@mixin transition {
+  transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@mixin gridTable {
+  @apply grid;
+  grid-template-columns: [index] 3rem [title] 6fr [favorite] 3.125rem [duration] 4.375rem;
+}
