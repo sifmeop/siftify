@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
-import type { MouseEvent } from 'react'
-import type { NextPage } from 'next'
-import styles from './ProgressBar.module.scss'
 import { usePlayer } from '@/stores/usePlayer'
+import type { NextPage } from 'next'
+import type { MouseEvent } from 'react'
+import styles from './ProgressBar.module.scss'
 
 const ProgressBar: NextPage = () => {
   const audioSrc = usePlayer((state) => state.audioSrc)
