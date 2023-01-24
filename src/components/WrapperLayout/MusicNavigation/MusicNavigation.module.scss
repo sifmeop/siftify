@@ -1,23 +1,9 @@
 .navigation {
-  @apply fixed bottom-0 z-50 w-screen bg-white shadow;
-  height: 6.875rem;
-  padding-right: 50px;
-}
-
-.progress {
-  @apply relative w-screen;
-  height: 0.625rem;
-  background-color: #dedede;
-}
-
-.progressCompleted {
-  @apply absolute bg-primary-blue;
-  height: 0.625rem;
-  width: 60%;
+  @apply fixed bottom-0 z-50 w-full bg-white shadow;
 }
 
 .controlPanel {
-  @apply grid grid-cols-3;
+  @apply grid;
   grid-template-columns: [info-start] 1fr [control-center] 1fr [volume-end] 1fr;
 }
 
@@ -51,4 +37,5 @@
     stroke: #8a8f96;
     stroke-width: 2.5;
   }
+  padding-right: 50px;
 }

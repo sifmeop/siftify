@@ -2,7 +2,7 @@ import FavoriteIcon from 'assets/icons/favorite.svg'
 import { type NextPage } from 'next'
 
 interface IProps {
-  className: string
+  className?: string
 }
 
 const Favorite: NextPage<IProps> = ({ className }) => {

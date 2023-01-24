@@ -15,25 +15,10 @@ const Volume: NextPage = () => {
     if (volume === 0) {
       return <VolumeNone />
     } else if (volume > 0 && volume <= 50) {
-      return <VolumeMedium onClick={offVolume} />
+      return <VolumeMedium />
     } else {
-      return <VolumeHigh onClick={offVolume} />
+      return <VolumeHigh />
     }
-  }
-
-  const offVolume = () => {
-    if (audioSrc?.volume) {
-      audioSrc.volume = 0
-    }
-  }
-
-  useEffect(() => {
-    console.log(volume / 100)
-  }, [volume])
-
-  const handleVolumeChangeColor = () => {
-    const valuePercent = (volume / 100) * 100
-    return `linear-gradient(to right, #47B5FF ${valuePercent}%, #dedede ${valuePercent}%)`
   }
 
   useEffect(() => {
@@ -47,7 +32,9 @@ const Volume: NextPage = () => {
       {handleVolume()}
       <input
         style={{
-          background: handleVolumeChangeColor()
+          background: `linear-gradient(to right, #47B5FF ${
+            (volume / 100) * 100
+          }%, #dedede ${(volume / 100) * 100}%)`
         }}
         className={styles.volumeRange}
         type='range'

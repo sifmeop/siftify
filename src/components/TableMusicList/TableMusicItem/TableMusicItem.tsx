@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import Equalizer from './Equalizer/Equalizer'
-import Favorite from './Favorite/Favorite'
+import Favorite from '@/components/Favorite/Favorite'
 import type { NextPage } from 'next'
 import Pause from 'assets/icons/pause.svg'
 import Play from 'assets/icons/play.svg'
@@ -16,8 +16,8 @@ interface IProps {
 }
 
 const TableMusicItem: NextPage<IProps> = ({ track, index }) => {
-  // const globalIsPlaying = usePlayer((state) => state.isPlaying)
-  // const setGlobalIsPlaying = usePlayer((state) => state.setIsPlaying)
+  const globalIsPlaying = usePlayer((state) => state.isPlaying)
+  const setGlobalIsPlaying = usePlayer((state) => state.setIsPlaying)
   // const currentSong = usePlayer((state) => state.currentSong)
   const setCurrentSong = usePlayer((state) => state.setCurrentSong)
   const audioSrc = usePlayer((state) => state.audioSrc)
@@ -28,7 +28,6 @@ const TableMusicItem: NextPage<IProps> = ({ track, index }) => {
   const [duration, setDuration] = useState<string>('')
 
   useEffect(() => {
-    setCurrentSong(track)
     const getInfo = () => {
       formatDuration(audioSrc?.duration)
     }
@@ -49,6 +48,7 @@ const TableMusicItem: NextPage<IProps> = ({ track, index }) => {
   const playTrack = () => {
     audioSrc?.pause()
     if (audioSrc?.src !== `${window.location.href}${track.audio}`) {
+      setCurrentSong(track)
       setIsPlaying(false)
       setAudioSrc(new Audio(`/${track.audio}`))
       setIsPlaying(true)

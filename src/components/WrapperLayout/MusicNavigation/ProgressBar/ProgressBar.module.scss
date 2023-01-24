@@ -1,0 +1,10 @@
+.progress {
+  @apply relative w-full cursor-pointer;
+  height: 0.625rem;
+  background-color: #dedede;
+}
+
+.progressCompleted {
+  @apply absolute bg-primary-blue;
+  height: 0.625rem;
+}
