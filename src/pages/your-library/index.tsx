@@ -5,7 +5,7 @@ import { type NextPage } from 'next'
 const YourLibraryPage: NextPage = () => {
   return (
     <>
-      <Meta title='Your Library' description='' />
+      <Meta title='Моя медиатека' description='Медиатека с моими плейлистами' />
       <YourLibrary />
     </>
   )

@@ -18,9 +18,9 @@ const Sidebar: NextPage = () => {
   return (
     <div className={styles.sidebar}>
       <Logo />
-      <Separator title='Menu' />
+      <Separator title='Меню' />
       <MenuList />
-      <Separator title='Playlists' />
+      <Separator title='Плейлисты' />
       <PlaylistList list={playlistLinks} />
     </div>
   )

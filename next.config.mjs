@@ -12,6 +12,9 @@ const config = {
     })
 
     return config
+  },
+  images: {
+    domains: ['static-cdn.jtvnw.net']
   }
 }
 export default config

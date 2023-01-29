@@ -2,7 +2,9 @@ import { memo, useCallback, useEffect } from 'react'
 
 import type { NextPage } from 'next'
 import Pause from 'assets/icons/pause.svg'
+import PauseBig from 'assets/icons/pause-big.svg'
 import Play from 'assets/icons/play.svg'
+import PlayBig from 'assets/icons/play-big.svg'
 import type { Track } from '@prisma/client'
 import clsx from 'clsx'
 import styles from './PlayTrack.module.scss'
@@ -10,12 +12,17 @@ import { usePlayer } from '@/stores/usePlayer'
 
 interface IProps {
   isCurrentPath: boolean
-  className: string
-  isPlaying: boolean
+  className?: string
   track: Track
+  size: 'small' | 'big'
 }
 
-const PlayTrack: NextPage<IProps> = ({ isCurrentPath, className, track }) => {
+const PlayTrack: NextPage<IProps> = ({
+  isCurrentPath,
+  className,
+  track,
+  size
+}) => {
   const audioSrc = usePlayer((state) => state.audioSrc)
   const setAudioSrc = usePlayer((state) => state.setAudioSrc)
   const isPlaying = usePlayer((state) => state.isPlaying)
@@ -53,18 +60,22 @@ const PlayTrack: NextPage<IProps> = ({ isCurrentPath, className, track }) => {
   }, [setIsPlaying])
 
   return (
-    <>
-      <div
-        className={clsx(className, {
-          [styles.controlPanel]: isCurrentPath && !isPlaying
-        })}>
-        {isCurrentPath && isPlaying ? (
+    <div
+      className={clsx(className, {
+        [styles.controlPanel]: isCurrentPath && !isPlaying
+      })}>
+      {isCurrentPath && isPlaying ? (
+        size === 'small' ? (
           <Pause className='mx-auto' onClick={pauseTrack} />
         ) : (
-          <Play className={'mx-auto'} onClick={playTrack} />
-        )}
-      </div>
-    </>
+          <PauseBig className='mx-auto' onClick={pauseTrack} />
+        )
+      ) : size === 'small' ? (
+        <Play className='mx-auto' onClick={playTrack} />
+      ) : (
+        <PlayBig className='mx-auto' onClick={playTrack} />
+      )}
+    </div>
   )
 }
 

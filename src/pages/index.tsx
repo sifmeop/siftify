@@ -5,7 +5,10 @@ import { type NextPage } from 'next'
 const HomePage: NextPage = () => {
   return (
     <>
-      <Meta title='Главная' description='Главная страница со всеми исполнителями и их треками' />
+      <Meta
+        title='Главная'
+        description='Главная страница со всеми исполнителями и их треками'
+      />
       <Home />
     </>
   )

@@ -3,7 +3,7 @@ import Equalizer from './Equalizer/Equalizer'
 import Favorite from '@/components/Favorite/Favorite'
 import Link from 'next/link'
 import type { NextPage } from 'next'
-import PlayTrack from './PlayTrack/PlayTrack'
+import PlayTrack from '@/components/PlayTrack/PlayTrack'
 import type { Track } from '@prisma/client'
 import clsx from 'clsx'
 import { memo } from 'react'
@@ -29,7 +29,7 @@ const TableMusicItem: NextPage<IProps> = ({ track, index }) => {
           </span>
         </div>
         <PlayTrack
-          isPlaying={isPlaying}
+          size='small'
           isCurrentPath={isCurrentPath}
           className={styles.controlPanel}
           track={track}

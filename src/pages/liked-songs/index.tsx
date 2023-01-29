@@ -5,7 +5,7 @@ import { type NextPage } from 'next'
 const LikedSongsPage: NextPage = () => {
   return (
     <>
-      <Meta title='Liked Songs' description='' />
+      <Meta title='Любимые треки' description='Список любимых треков' />
       <LikedSongs />
     </>
   )

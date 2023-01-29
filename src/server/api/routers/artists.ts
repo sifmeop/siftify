@@ -35,5 +35,21 @@ export const artistsRouter = createTRPCRouter({
           id: input.artistId
         }
       })
+    }),
+  getSearch: publicProcedure
+    .input(z.object({ search: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.track.findMany({
+        where: {
+          OR: [
+            {
+              title: {
+                contains: input.search,
+                mode: 'insensitive'
+              }
+            }
+          ]
+        }
+      })
     })
 })

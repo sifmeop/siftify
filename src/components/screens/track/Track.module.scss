@@ -2,3 +2,7 @@
   @apply font-normal;
   color: #818088;
 }
+
+.panel {
+  @apply flex items-center gap-5 p-5;
+}

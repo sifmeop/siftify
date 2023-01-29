@@ -8,8 +8,8 @@ const PlaylistPage: NextPage = () => {
   return (
     <>
       <Meta
-        title={`Playlist: ${String(query.id)}`}
-        description={`Playlist called ${String(query.id)}}`}
+        title={`Плейлист: ${String(query.id)}`}
+        description={`Плейлист под названием: ${String(query.id)}}`}
       />
       <div>PlaylistPage</div>
     </>

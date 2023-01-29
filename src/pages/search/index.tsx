@@ -5,7 +5,7 @@ import { type NextPage } from 'next'
 const SearchPage: NextPage = () => {
   return (
     <>
-      <Meta title='Search' description='' />
+      <Meta title='Поиск' description='Поиск по песням и артистам' />
       <Search />
     </>
   )

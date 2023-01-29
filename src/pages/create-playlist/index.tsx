@@ -5,7 +5,10 @@ import { type NextPage } from 'next'
 const CreatePlaylistPage: NextPage = () => {
   return (
     <>
-      <Meta title='Create Playlist' description='' />
+      <Meta
+        title='Создать плейлист'
+        description='Страница для создания нового плейлиста'
+      />
       <CreatePlaylist />
     </>
   )

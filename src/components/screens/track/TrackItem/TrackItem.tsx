@@ -20,9 +20,7 @@ const TrackItem: NextPage<IProps> = ({ track }) => {
           <Duration className='mx-auto' />
         </div>
       </div>
-      <div>
-        <TableMusicItem track={track} index={0} />
-      </div>
+      <TableMusicItem track={track} index={0} />
     </div>
   )
 }

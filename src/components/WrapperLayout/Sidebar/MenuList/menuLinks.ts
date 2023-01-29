@@ -7,9 +7,9 @@ import Library from '@/assets/icons/your-library.svg'
 import { type IMenuLink } from '@/types/menuLink.interface'
 
 export const menuLinks: IMenuLink[] = [
-  { name: 'Home', path: '/', icon: Home },
-  { name: 'Search', path: '/search', icon: Search },
-  { name: 'Your Library', path: '/your-library', icon: Library },
-  { name: 'Liked Songs', path: '/liked-songs', icon: LikedSongs },
-  { name: 'Create Playlist', path: '/create-playlist', icon: CreatePlaylist }
+  { name: 'Главная', path: '/', icon: Home },
+  { name: 'Поиск', path: '/search', icon: Search },
+  { name: 'Моя медиатека', path: '/your-library', icon: Library },
+  { name: 'Любимые треки', path: '/liked-songs', icon: LikedSongs },
+  { name: 'Создать плейлист', path: '/create-playlist', icon: CreatePlaylist }
 ]
