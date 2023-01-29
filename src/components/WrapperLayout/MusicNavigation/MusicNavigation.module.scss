@@ -13,12 +13,11 @@
 
 .title {
   @apply text-2xl;
-  letter-spacing: 0.05em;
   color: #4a4b52;
 }
 
 .featuring {
-  @apply text-xl font-medium;
+  @apply text-base font-medium;
   color: #949497;
 }
 

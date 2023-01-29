@@ -17,5 +17,23 @@ export const artistsRouter = createTRPCRouter({
           artist: true
         }
       })
+    }),
+  getTrack: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.track.findUnique({
+        where: {
+          id: input.id
+        }
+      })
+    }),
+  getArtist: publicProcedure
+    .input(z.object({ artistId: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.artist.findUnique({
+        where: {
+          id: input.artistId
+        }
+      })
     })
 })

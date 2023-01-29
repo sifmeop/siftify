@@ -1,7 +1,7 @@
 @import 'styles/mixins';
 
 .track {
-  @apply mb-3 grid items-center rounded-lg p-2;
+  @apply grid items-center rounded-lg p-2;
   @include gridTable;
   transition: all 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
   &:hover {
@@ -9,7 +9,7 @@
     .trackIndex {
       @apply hidden;
     }
-    .control {
+    .controlPanel {
       @apply block;
     }
     .equalizer {
@@ -28,12 +28,18 @@
   @apply text-base;
 }
 
-.control {
+.controlPanel {
   @apply hidden cursor-pointer text-center;
 }
 
+.title {
+  @apply text-2xl;
+  color: #4a4b52;
+}
+
 .featuring {
-  @apply text-base font-medium text-tertiary;
+  @apply text-base font-medium;
+  color: #949497;
 }
 
 .equalizer {
@@ -42,8 +48,4 @@
 
 .favorite {
   @apply invisible cursor-pointer;
-}
-
-.duration {
-  @apply text-center text-base;
 }

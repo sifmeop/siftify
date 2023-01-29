@@ -1,18 +1,15 @@
 import Duration from 'assets/icons/duration.svg'
 import type { NextPage } from 'next'
-import TableMusicItem from './TableMusicItem/TableMusicItem'
-import { api } from '@/utils/api'
+import TableMusicItem from '../../../TableMusicList/TableMusicItem/TableMusicItem'
+import type { Track } from '@prisma/client'
 import clsx from 'clsx'
-import { memo } from 'react'
-import styles from './TableMusicList.module.scss'
+import styles from './TrackItem.module.scss'
 
 interface IProps {
-  artistId: string
+  track: Track
 }
 
-const TableMusicList: NextPage<IProps> = ({ artistId }) => {
-  const { data: tracks } = api.artists.getArtistTracks.useQuery({ artistId })
-
+const TrackItem: NextPage<IProps> = ({ track }) => {
   return (
     <div>
       <div className={styles.head}>
@@ -24,12 +21,10 @@ const TableMusicList: NextPage<IProps> = ({ artistId }) => {
         </div>
       </div>
       <div>
-        {tracks?.map((track, index) => (
-          <TableMusicItem key={track.id} track={track} index={index} />
-        ))}
+        <TableMusicItem track={track} index={0} />
       </div>
     </div>
   )
 }
 
-export default memo(TableMusicList)
+export default TrackItem

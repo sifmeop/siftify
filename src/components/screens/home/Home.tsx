@@ -1,7 +1,8 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import type { NextPage } from 'next'
 import TableMusicList from '@/components/TableMusicList/TableMusicList'
 import { api } from '@/utils/api'
-import { type NextPage } from 'next'
-import Image from 'next/image'
 import styles from './Home.module.scss'
 
 const Home: NextPage = () => {
@@ -20,7 +21,9 @@ const Home: NextPage = () => {
               placeholder='blur'
               blurDataURL={`/${artist.image}`}
             />
-            <h1 className={styles.name}>{artist.name}</h1>
+            <h1 className={styles.name}>
+              <Link href={`/artist/${artist.id}`}>{artist.name}</Link>
+            </h1>
           </div>
           <TableMusicList artistId={artist.id} />
         </div>

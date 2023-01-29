@@ -1,5 +1,5 @@
 .volume {
-  @apply flex items-center gap-7;
+  @apply flex items-center gap-5;
 }
 
 .volumeRange {
@@ -21,7 +21,7 @@
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    /* @apply bg-primary-blue; */
+    @apply opacity-0 transition-opacity duration-300 ease-in-out;
     background-color: #29a7fd;
     height: 1rem;
     width: 1rem;
@@ -30,6 +30,9 @@
   }
   &:active::-webkit-slider-thumb {
     background-color: #14a0ff;
+  }
+  &:hover::-webkit-slider-thumb {
+    @apply visible opacity-100;
   }
   &::-ms-thumb {
     appearance: none;

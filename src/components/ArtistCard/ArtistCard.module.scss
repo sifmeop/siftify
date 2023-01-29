@@ -1,0 +1,23 @@
+.artist {
+  @apply mb-3 flex items-end gap-5;
+}
+
+.artistInfo {
+  @apply flex flex-col;
+  margin-left: 3.125rem;
+}
+
+.type {
+  @apply flex items-center gap-2 text-2xl font-semibold;
+  margin-bottom: 3.125rem;
+}
+
+.name {
+  font-size: 4rem;
+  line-height: 4.875rem;
+  margin-bottom: 40px;
+}
+
+.info {
+  @apply text-2xl font-medium;
+}

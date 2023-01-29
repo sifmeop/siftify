@@ -16,9 +16,9 @@ import RepeatTrack from './RepeatTrack/RepeatTrack'
 import VolumeChange from './VolumeChange/VolumeChange'
 
 const MusicNavigation: NextPage = () => {
+  const audioSrc = usePlayer((state) => state.audioSrc)
   const currentSong = usePlayer((state) => state.currentSong)
   const setIsPlaying = usePlayer((state) => state.setIsPlaying)
-  const audioSrc = usePlayer((state) => state.audioSrc)
 
   useEffect(() => {
     if (audioSrc) {
@@ -51,6 +51,10 @@ const MusicNavigation: NextPage = () => {
               </p>
             </div>
           </div>
+          {/* <div className='flex flex-col items-center gap-3'>
+            <p>
+              {audioSrc?.currentTime}/{audioSrc?.duration}
+            </p> */}
           <div className={styles.control}>
             <Random />
             <SkipBack />
@@ -58,6 +62,7 @@ const MusicNavigation: NextPage = () => {
             <SkipForward />
             <RepeatTrack />
           </div>
+          {/* </div> */}
           <div className={styles.volume}>
             <Favorite />
             <Add />

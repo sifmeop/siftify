@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 
 import type { NextPage } from 'next'
-import VolumeHigh from 'assets/icons/volume-highest.svg'
-import VolumeMedium from 'assets/icons/volume-half.svg'
-import VolumeNone from 'assets/icons/volume-silent.svg'
+import VolumeHigh from 'assets/icons/volume-high.svg'
+import VolumeLow from 'assets/icons/volume-low.svg'
+import VolumeMedium from 'assets/icons/volume-medium.svg'
+import VolumeNone from 'assets/icons/volume-none.svg'
 import styles from './VolumeChange.module.scss'
 import { usePlayer } from '@/stores/usePlayer'
 
@@ -12,6 +13,13 @@ const VolumeChange: NextPage = () => {
   const setVolume = usePlayer((state) => state.setVolume)
   const audioSrc = usePlayer((state) => state.audioSrc)
   const [prevStateVolume, setPrevStateVolume] = useState<number>(volume)
+
+  useEffect(() => {
+    const volumeFromLocalStorage = localStorage.getItem('volume')
+    if (volumeFromLocalStorage) {
+      setVolume(Number(volumeFromLocalStorage))
+    }
+  }, [])
 
   useEffect(() => {
     if (audioSrc) {
@@ -27,8 +35,10 @@ const VolumeChange: NextPage = () => {
   const handleChangeVolume = () => {
     if (volume === 0) {
       return <VolumeNone onClick={() => setVolume(prevStateVolume)} />
-    } else if (volume > 0 && volume <= 50) {
+    } else if (volume > 50 && volume <= 75) {
       return <VolumeMedium onClick={handlePrevSaveVolume} />
+    } else if (volume > 0 && volume <= 50) {
+      return <VolumeLow onClick={handlePrevSaveVolume} />
     } else {
       return <VolumeHigh onClick={handlePrevSaveVolume} />
     }
@@ -37,6 +47,11 @@ const VolumeChange: NextPage = () => {
   const handlePrevSaveVolume = () => {
     setVolume(0)
     setPrevStateVolume(volume)
+  }
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setVolume(Number(e.target.value))
+    localStorage.setItem('volume', e.target.value)
   }
 
   return (
@@ -53,7 +68,7 @@ const VolumeChange: NextPage = () => {
         min={0}
         max={100}
         value={volume}
-        onChange={(e) => setVolume(Number(e.target.value))}
+        onChange={handleVolumeChange}
       />
     </div>
   )
