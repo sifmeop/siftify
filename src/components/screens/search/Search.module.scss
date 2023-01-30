@@ -1,0 +1,29 @@
+.container {
+  @apply mx-auto max-w-3xl;
+}
+
+.search {
+  @apply relative mb-5 w-full;
+  &Icon {
+    @apply absolute inset-y-0 flex items-center;
+    &Search {
+      @apply pointer-events-none left-0 pl-3;
+    }
+    &Close {
+      @apply right-0 cursor-pointer pr-3;
+    }
+  }
+  &Input {
+    @apply w-full rounded-lg border border-[#d9d9d9] py-2 px-14 text-lg font-normal;
+    color: rgba(0, 0, 0, 0.88);
+    transition: all 0.5s cubic-bezier(0.14, 0.65, 0.15, 1);
+    border-inline-end-width: 2px;
+    &:hover {
+      @apply border border-primary-blue;
+    }
+    &:focus {
+      @apply border border-primary-blue outline-none;
+      box-shadow: 0 0 0 4px rgb(5 145 255 / 10%);
+    }
+  }
+}

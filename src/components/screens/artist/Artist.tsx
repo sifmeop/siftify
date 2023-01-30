@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const Artist: NextPage<IProps> = ({ artist }) => {
-  const { data: tracks } = api.artists.getArtistTracks.useQuery({
+  const { data: tracks } = api.tracks.getArtistTracks.useQuery({
     artistId: artist.id
   })
 

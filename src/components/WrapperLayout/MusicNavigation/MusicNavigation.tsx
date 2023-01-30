@@ -8,7 +8,8 @@ import SkipBack from 'assets/icons/skip-back.svg'
 import SkipForward from 'assets/icons/skip-forward.svg'
 import { type NextPage } from 'next'
 import Image from 'next/image'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
+import { IoClose } from 'react-icons/io5'
 import styles from './MusicNavigation.module.scss'
 import PlayTrack from './PlayTrack/PlayTrack'
 import ProgressBar from './ProgressBar/ProgressBar'
@@ -18,6 +19,7 @@ import VolumeChange from './VolumeChange/VolumeChange'
 const MusicNavigation: NextPage = () => {
   const audioSrc = usePlayer((state) => state.audioSrc)
   const currentSong = usePlayer((state) => state.currentSong)
+  const setCurrentSong = usePlayer((state) => state.setCurrentSong)
   const setIsPlaying = usePlayer((state) => state.setIsPlaying)
 
   useEffect(() => {
@@ -27,6 +29,11 @@ const MusicNavigation: NextPage = () => {
       })
     }
   }, [audioSrc, setIsPlaying])
+
+  const closeNavigation = useCallback(() => {
+    setIsPlaying(false)
+    setCurrentSong(null)
+  }, [setCurrentSong, setIsPlaying])
 
   return (
     currentSong && (
@@ -51,10 +58,6 @@ const MusicNavigation: NextPage = () => {
               </p>
             </div>
           </div>
-          {/* <div className='flex flex-col items-center gap-3'>
-            <p>
-              {audioSrc?.currentTime}/{audioSrc?.duration}
-            </p> */}
           <div className={styles.control}>
             <Random />
             <SkipBack />
@@ -62,13 +65,13 @@ const MusicNavigation: NextPage = () => {
             <SkipForward />
             <RepeatTrack />
           </div>
-          {/* </div> */}
           <div className={styles.volume}>
             <Favorite />
             <Add />
             <VolumeChange />
           </div>
         </div>
+        <IoClose onClick={closeNavigation} className={styles.closeNavigation} />
       </div>
     )
   )

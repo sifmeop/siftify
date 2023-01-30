@@ -1,0 +1,10 @@
+.artist {
+  @apply flex items-center gap-3;
+  &:not(:last-child) {
+    @apply mb-5 border-b border-b-black pb-5;
+  }
+}
+
+.name {
+  @apply hover:underline;
+}

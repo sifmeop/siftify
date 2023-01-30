@@ -5,9 +5,9 @@ interface IPlayer {
   isPlaying: boolean
   setIsPlaying: (isPlaying: boolean) => void
   currentSong: Track | null
-  setCurrentSong: (song: Track) => void
+  setCurrentSong: (song: Track | null) => void
   audioSrc: HTMLAudioElement | null
-  setAudioSrc: (src: HTMLAudioElement) => void
+  setAudioSrc: (src: HTMLAudioElement | null) => void
   volume: number
   setVolume: (volume: number) => void
 }
@@ -16,9 +16,9 @@ export const usePlayer = create<IPlayer>((set) => ({
   isPlaying: false,
   setIsPlaying: (isPlaying: boolean) => set({ isPlaying }),
   currentSong: null,
-  setCurrentSong: (song: Track) => set({ currentSong: song }),
+  setCurrentSong: (song: Track | null) => set({ currentSong: song }),
   audioSrc: null,
-  setAudioSrc: (src: HTMLAudioElement) => set({ audioSrc: src }),
+  setAudioSrc: (src: HTMLAudioElement | null) => set({ audioSrc: src }),
   volume: 50,
   setVolume: (volume: number) => set({ volume })
 }))

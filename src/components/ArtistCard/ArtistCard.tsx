@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import type { NextPage } from 'next'
+import clsx from 'clsx'
 import styles from './ArtistCard.module.scss'
 
 interface IProps {
   size: 150 | 300
   image: string
   name: string
-  type?: string | JSX.Element
+  type?: 'СИНГЛ' | JSX.Element
   title?: string
   info: string | JSX.Element
 }
@@ -22,6 +23,7 @@ const ArtistCard: NextPage<IProps> = ({
   return (
     <div className={styles.artist}>
       <Image
+        className={clsx({ 'rounded-full': type !== 'СИНГЛ' })}
         width={size}
         height={size}
         src={`/${image}`}

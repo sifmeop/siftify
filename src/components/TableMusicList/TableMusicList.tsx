@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const TableMusicList: NextPage<IProps> = ({ artistId }) => {
-  const { data: tracks } = api.artists.getArtistTracks.useQuery({ artistId })
+  const { data: tracks } = api.tracks.getArtistTracks.useQuery({ artistId })
 
   return (
     <div>

@@ -6,27 +6,6 @@ export const artistsRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.artist.findMany()
   }),
-  getArtistTracks: publicProcedure
-    .input(z.object({ artistId: z.string() }))
-    .query(({ ctx, input }) => {
-      return ctx.prisma.track.findMany({
-        where: {
-          artistId: input.artistId
-        },
-        include: {
-          artist: true
-        }
-      })
-    }),
-  getTrack: publicProcedure
-    .input(z.object({ id: z.string() }))
-    .query(({ ctx, input }) => {
-      return ctx.prisma.track.findUnique({
-        where: {
-          id: input.id
-        }
-      })
-    }),
   getArtist: publicProcedure
     .input(z.object({ artistId: z.string() }))
     .query(({ ctx, input }) => {
@@ -36,19 +15,15 @@ export const artistsRouter = createTRPCRouter({
         }
       })
     }),
-  getSearch: publicProcedure
+  searchArtist: publicProcedure
     .input(z.object({ search: z.string() }))
     .query(({ ctx, input }) => {
-      return ctx.prisma.track.findMany({
+      return ctx.prisma.artist.findMany({
         where: {
-          OR: [
-            {
-              title: {
-                contains: input.search,
-                mode: 'insensitive'
-              }
-            }
-          ]
+          name: {
+            contains: input.search,
+            mode: 'insensitive'
+          }
         }
       })
     })
