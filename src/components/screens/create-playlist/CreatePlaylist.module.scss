@@ -3,7 +3,7 @@
 }
 
 .title {
-  @apply mb-5 text-2xl font-bold;
+  @apply mb-5 border-b-2 border-b-primary pb-1 text-2xl font-bold;
 }
 
 .input {

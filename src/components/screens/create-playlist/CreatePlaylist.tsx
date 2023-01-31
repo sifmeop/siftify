@@ -1,9 +1,9 @@
 import CoverPlaylist from 'assets/images/cover-playlist.jpg'
-import Image from 'next/image'
-import type { NextPage } from 'next'
 import clsx from 'clsx'
-import styles from './CreatePlaylist.module.scss'
+import type { NextPage } from 'next'
+import Image from 'next/image'
 import { useState } from 'react'
+import styles from './CreatePlaylist.module.scss'
 
 interface ICreate {
   name: string
@@ -18,8 +18,8 @@ const CreatePlaylist: NextPage = () => {
       <h1 className={styles.title}>Создать плейлист</h1>
       <div className='mb-5 flex gap-4'>
         <Image
-          className='rounded-lg'
           width={200}
+          className='rounded-lg'
           height={200}
           src={CoverPlaylist}
           alt='Обложка для плейлиста'

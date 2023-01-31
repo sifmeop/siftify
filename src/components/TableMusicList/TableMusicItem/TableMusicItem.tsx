@@ -46,7 +46,11 @@ const TableMusicItem: NextPage<IProps> = ({ track, index }) => {
         </h1>
         <h2 className={styles.featuring}>{track.featuring.join(', ')}</h2>
       </div>
-      <Favorite className={styles.favorite} />
+      <Favorite
+        title={track.title}
+        trackId={track.id}
+        className={styles.favorite}
+      />
       <Duration track={track} />
     </div>
   )

@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import Favorite from '@/components/Favorite/Favorite'
-import { usePlayer } from '@/stores/usePlayer'
-import Empty from 'assets/empty.jpg'
-import Add from 'assets/icons/add.svg'
-import Random from 'assets/icons/random.svg'
-import SkipBack from 'assets/icons/skip-back.svg'
-import SkipForward from 'assets/icons/skip-forward.svg'
-import { type NextPage } from 'next'
-import Image from 'next/image'
+
 import { useCallback, useEffect } from 'react'
+
+import Add from 'assets/icons/add.svg'
+import Empty from 'assets/empty.jpg'
+import Favorite from '@/components/Favorite/Favorite'
+import Image from 'next/image'
 import { IoClose } from 'react-icons/io5'
-import styles from './MusicNavigation.module.scss'
+import type { NextPage } from 'next'
 import PlayTrack from './PlayTrack/PlayTrack'
 import ProgressBar from './ProgressBar/ProgressBar'
+import Random from 'assets/icons/random.svg'
 import RepeatTrack from './RepeatTrack/RepeatTrack'
+import SkipBack from 'assets/icons/skip-back.svg'
+import SkipForward from 'assets/icons/skip-forward.svg'
 import VolumeChange from './VolumeChange/VolumeChange'
+import styles from './MusicNavigation.module.scss'
+import { usePlayer } from '@/stores/usePlayer'
 
 const MusicNavigation: NextPage = () => {
   const audioSrc = usePlayer((state) => state.audioSrc)
@@ -66,7 +68,7 @@ const MusicNavigation: NextPage = () => {
             <RepeatTrack />
           </div>
           <div className={styles.volume}>
-            <Favorite />
+            <Favorite title={currentSong.title} trackId={currentSong.id} />
             <Add />
             <VolumeChange />
           </div>
