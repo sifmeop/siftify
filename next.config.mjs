@@ -4,7 +4,7 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-  webpack(config, { isServer, webpack }) {
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,

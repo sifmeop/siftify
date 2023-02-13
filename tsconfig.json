@@ -28,6 +28,16 @@
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.mjs",
+    "tailwind.config.js",
+    "prettier.config.js",
+    "postcss.config.js",
+    "next.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }
