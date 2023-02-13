@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { memo } from 'react'
 
 interface IProps {
-  className: string
+  className?: string
   isPlaying: boolean
   isCurrentPath: boolean
 }
@@ -39,7 +39,7 @@ const Equalizer: NextPage<IProps> = ({
                 attributeName='height'
                 calcMode='spline'
                 values='50;75;10;50'
-                times='0;0.33;0.66;1'
+                keyTimes='0;0.33;0.66;1'
                 dur='1s'
                 keySplines='0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1'
                 repeatCount='indefinite'
@@ -56,7 +56,7 @@ const Equalizer: NextPage<IProps> = ({
                 attributeName='height'
                 calcMode='spline'
                 values='50;75;10;50'
-                times='0;0.33;0.66;1'
+                keyTimes='0;0.33;0.66;1'
                 dur='1s'
                 keySplines='0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1'
                 repeatCount='indefinite'
@@ -68,7 +68,7 @@ const Equalizer: NextPage<IProps> = ({
                 attributeName='height'
                 calcMode='spline'
                 values='50;75;10;50'
-                times='0;0.33;0.66;1'
+                keyTimes='0;0.33;0.66;1'
                 dur='1s'
                 keySplines='0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1'
                 repeatCount='indefinite'
@@ -85,7 +85,7 @@ const Equalizer: NextPage<IProps> = ({
                 attributeName='height'
                 calcMode='spline'
                 values='50;75;10;50'
-                times='0;0.33;0.66;1'
+                keyTimes='0;0.33;0.66;1'
                 dur='1s'
                 keySplines='0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1'
                 repeatCount='indefinite'
@@ -102,7 +102,7 @@ const Equalizer: NextPage<IProps> = ({
                 attributeName='height'
                 calcMode='spline'
                 values='50;75;10;50'
-                times='0;0.33;0.66;1'
+                keyTimes='0;0.33;0.66;1'
                 dur='1s'
                 keySplines='0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1'
                 repeatCount='indefinite'

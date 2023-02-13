@@ -1,7 +1,7 @@
-import Image from 'next/image'
+import clsx from 'clsx'
 import type { NextPage } from 'next'
 import type { StaticImageData } from 'next/image'
-import clsx from 'clsx'
+import Image from 'next/image'
 import styles from './ArtistCard.module.scss'
 
 interface IProps {
@@ -31,8 +31,6 @@ const ArtistCard: NextPage<IProps> = ({
         height={size}
         src={typeof image === 'string' ? `/${image}` : image}
         alt={name}
-        placeholder='blur'
-        blurDataURL={`/${image}`}
         quality={100}
       />
       <div className={styles.artistInfo}>

@@ -32,11 +32,12 @@
 
 .volume {
   @apply flex items-center justify-end gap-4;
-  > svg path {
-    stroke: #8a8f96;
-    stroke-width: 2.5;
-  }
   padding-right: 50px;
+}
+
+.iconStyles > path {
+  stroke: #8a8f96;
+  stroke-width: 2.5;
 }
 
 .closeNavigation {

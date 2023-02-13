@@ -1,8 +1,10 @@
-.fav {
+.inFavorites {
+  /* & path {
+    stroke: #dd5353 !important;
+  } */
+  cursor: pointer;
 }
 
-.favPlaceholder {
-}
-
-.deleteFav {
+.visibleIcon {
+  visibility: visible !important;
 }

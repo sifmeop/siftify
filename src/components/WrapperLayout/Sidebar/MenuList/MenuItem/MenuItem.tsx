@@ -17,7 +17,7 @@ const MenuItem: NextPage<IProps> = ({ item }) => {
       <Link
         href={item.path}
         className={clsx(styles.link, {
-          [styles.active]: router.pathname === item.path
+          [styles.active as string]: router.pathname === item.path
         })}>
         {<item.icon size='1.5625rem' />}
         {item.name}

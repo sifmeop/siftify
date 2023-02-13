@@ -62,7 +62,7 @@ const PlayTrack: NextPage<IProps> = ({
   return (
     <div
       className={clsx(className, {
-        [styles.controlPanel]: isCurrentPath && !isPlaying
+        [styles.controlPanel as string]: isCurrentPath && !isPlaying
       })}>
       {isCurrentPath && isPlaying ? (
         size === 'small' ? (

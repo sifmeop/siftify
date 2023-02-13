@@ -1,7 +1,7 @@
-import { Artist } from '@prisma/client'
+import type { Artist } from '@prisma/client'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { NextPage } from 'next'
 import styles from './SearchArtist.module.scss'
 
 interface IProps {

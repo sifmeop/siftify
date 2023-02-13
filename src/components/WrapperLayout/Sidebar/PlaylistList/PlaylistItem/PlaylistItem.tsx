@@ -17,7 +17,7 @@ const PlaylistItem: NextPage<IProps> = ({ item }) => {
       <Link
         href={item.path}
         className={clsx(styles.link, {
-          [styles.active]: router.asPath.split('?')[0] === item.path
+          [styles.active as string]: router.asPath.split('?')[0] === item.path
         })}>
         {item.name}
       </Link>

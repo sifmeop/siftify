@@ -13,7 +13,7 @@ const PagePanel: NextPage<IProps> = ({ track, isCurrentPath }) => {
   return (
     <div className={styles.panel}>
       <PlayTrack isCurrentPath={isCurrentPath} track={track} size='big' />
-      <Favorite />
+      <Favorite track={track} />
     </div>
   )
 }

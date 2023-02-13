@@ -1,7 +1,7 @@
+import type { Track } from '@prisma/client'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { NextPage } from 'next'
-import { Track } from '@prisma/client'
 import styles from './SearchTrack.module.scss'
 
 interface IProps {

@@ -37,7 +37,7 @@ const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
               track={track}
               isCurrentPath={isCurrentPath}
             />
-            <Favorite />
+            <Favorite track={track} />
           </div>
         </div>
       </div>

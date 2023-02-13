@@ -1,4 +1,5 @@
 import { useFavorites } from '@/stores/useFavorites'
+import { usePlayer } from '@/stores/usePlayer'
 import { api } from '@/utils/api'
 import type { Track } from '@prisma/client'
 import InFavorites from 'assets/icons/in-favorites.svg'
@@ -7,6 +8,7 @@ import clsx from 'clsx'
 import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { memo } from 'react'
+import styles from './Favorite.module.scss'
 
 interface IProps {
   track: Track
@@ -19,6 +21,10 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
   const favorites = useFavorites((state) => state.favorites)
   const addFavorite = useFavorites((state) => state.addFavorite)
   const removeFavorite = useFavorites((state) => state.removeFavorite)
+
+  const currentSong = usePlayer((state) => state.currentSong)
+  const isPlaying = usePlayer((state) => state.isPlaying)
+  const isCurrentPath = currentSong?.title === track.title
 
   const { refetch: refetchAddToFavorites } =
     api.favorites.addToFavorites.useQuery(
@@ -58,12 +64,16 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
       favorites.some((favorite) => favorite.trackId === track?.id) ? (
         <InFavorites
           onClick={deleteFromFavorites}
-          className={clsx(className, 'cursor-pointer')}
+          className={clsx(className, styles.inFavorites, {
+            [styles.visibleIcon as string]: isCurrentPath && isPlaying
+          })}
         />
       ) : (
         <NotInFavorites
           onClick={addToFavorites}
-          className={clsx(className, 'cursor-pointer')}
+          className={clsx(className, 'cursor-pointer', {
+            [styles.visibleIcon as string]: isCurrentPath && isPlaying
+          })}
         />
       )}
     </>
