@@ -1,5 +1,6 @@
 import type { Track } from '@prisma/client'
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
 interface IPlayer {
   isPlaying: boolean
@@ -12,13 +13,15 @@ interface IPlayer {
   setVolume: (volume: number) => void
 }
 
-export const usePlayer = create<IPlayer>((set) => ({
-  isPlaying: false,
-  setIsPlaying: (isPlaying: boolean) => set({ isPlaying }),
-  currentSong: null,
-  setCurrentSong: (song: Track | null) => set({ currentSong: song }),
-  audioSrc: null,
-  setAudioSrc: (src: HTMLAudioElement | null) => set({ audioSrc: src }),
-  volume: 50,
-  setVolume: (volume: number) => set({ volume })
-}))
+export const usePlayer = create<IPlayer>()(
+  devtools((set) => ({
+    isPlaying: false,
+    setIsPlaying: (isPlaying: boolean) => set({ isPlaying }),
+    currentSong: null,
+    setCurrentSong: (song: Track | null) => set({ currentSong: song }),
+    audioSrc: null,
+    setAudioSrc: (src: HTMLAudioElement | null) => set({ audioSrc: src }),
+    volume: 50,
+    setVolume: (volume: number) => set({ volume })
+  }))
+)

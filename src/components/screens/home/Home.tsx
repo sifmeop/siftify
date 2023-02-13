@@ -1,7 +1,7 @@
+import ArtistTrackList from '@/components/ArtistTrackList/ArtistTrackList'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { NextPage } from 'next'
-import TableMusicList from '@/components/TableMusicList/TableMusicList'
 import { api } from '@/utils/api'
 import styles from './Home.module.scss'
 
@@ -9,7 +9,7 @@ const Home: NextPage = () => {
   const { data: artists } = api.artists.getAll.useQuery()
 
   return (
-    <div>
+    <>
       {artists?.map((artist) => (
         <div key={artist.id} className={styles.artist}>
           <div className={styles.artistInfo}>
@@ -25,10 +25,10 @@ const Home: NextPage = () => {
               <Link href={`/artist/${artist.id}`}>{artist.name}</Link>
             </h1>
           </div>
-          <TableMusicList artistId={artist.id} />
+          <ArtistTrackList artistId={artist.id} />
         </div>
       ))}
-    </div>
+    </>
   )
 }
 

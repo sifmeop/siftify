@@ -1,6 +1,6 @@
-import Image, { StaticImageData } from 'next/image'
-
+import Image from 'next/image'
 import type { NextPage } from 'next'
+import type { StaticImageData } from 'next/image'
 import clsx from 'clsx'
 import styles from './ArtistCard.module.scss'
 
@@ -10,7 +10,7 @@ interface IProps {
   name: string
   type?: 'СИНГЛ' | 'ПЛЕЙЛИСТ' | JSX.Element
   title?: string
-  info: string | JSX.Element
+  info: string | JSX.Element | undefined
 }
 
 const ArtistCard: NextPage<IProps> = ({

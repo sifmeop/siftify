@@ -2,7 +2,8 @@ import ArtistCard from '@/components/ArtistCard/ArtistCard'
 import type { Track as ITrack } from '@prisma/client'
 import type { NextPage } from 'next'
 import PagePanel from '@/components/PagePanel/PagePanel'
-import TrackItem from '@/components/screens/track/TrackItem/TrackItem'
+import TableHeader from '@/components/TableHeader/TableHeader'
+import TrackItem from '@/components/TrackItem/TrackItem'
 import { memo } from 'react'
 import styles from './Track.module.scss'
 import { useDuration } from '@/hooks/useDuration'
@@ -33,11 +34,8 @@ const Track: NextPage<IProps> = ({ track }) => {
         }
       />
       <PagePanel track={track} isCurrentPath={isCurrentPath} />
-      {/* <div className={styles.panel}>
-        <PlayTrack isCurrentPath={isCurrentPath} track={track} size='big' />
-        <Favorite />
-      </div> */}
-      <TrackItem track={track} />
+      <TableHeader />
+      <TrackItem track={track} index={0} />
     </div>
   )
 }

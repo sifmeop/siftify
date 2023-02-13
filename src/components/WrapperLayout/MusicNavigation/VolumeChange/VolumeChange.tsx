@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
-import type { NextPage } from 'next'
+import { usePlayer } from '@/stores/usePlayer'
 import VolumeHigh from 'assets/icons/volume-high.svg'
 import VolumeLow from 'assets/icons/volume-low.svg'
 import VolumeMedium from 'assets/icons/volume-medium.svg'
 import VolumeNone from 'assets/icons/volume-none.svg'
+import type { NextPage } from 'next'
 import styles from './VolumeChange.module.scss'
-import { usePlayer } from '@/stores/usePlayer'
 
 const VolumeChange: NextPage = () => {
   const volume = usePlayer((state) => state.volume)
@@ -34,13 +34,27 @@ const VolumeChange: NextPage = () => {
 
   const handleChangeVolume = () => {
     if (volume === 0) {
-      return <VolumeNone onClick={() => setVolume(prevStateVolume)} />
-    } else if (volume > 50 && volume <= 75) {
-      return <VolumeMedium onClick={handlePrevSaveVolume} />
+      return (
+        <VolumeNone
+          className='cursor-pointer'
+          onClick={() => setVolume(prevStateVolume)}
+        />
+      )
+    } else if (volume > 30 && volume <= 70) {
+      return (
+        <VolumeMedium
+          className='cursor-pointer'
+          onClick={handlePrevSaveVolume}
+        />
+      )
     } else if (volume > 0 && volume <= 50) {
-      return <VolumeLow onClick={handlePrevSaveVolume} />
+      return (
+        <VolumeLow className='cursor-pointer' onClick={handlePrevSaveVolume} />
+      )
     } else {
-      return <VolumeHigh onClick={handlePrevSaveVolume} />
+      return (
+        <VolumeHigh className='cursor-pointer' onClick={handlePrevSaveVolume} />
+      )
     }
   }
 

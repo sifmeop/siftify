@@ -1,14 +1,14 @@
 import { memo, useCallback, useEffect } from 'react'
 
-import type { NextPage } from 'next'
-import Pause from 'assets/icons/pause.svg'
-import PauseBig from 'assets/icons/pause-big.svg'
-import Play from 'assets/icons/play.svg'
-import PlayBig from 'assets/icons/play-big.svg'
-import type { Track } from '@prisma/client'
-import clsx from 'clsx'
-import styles from './PlayTrack.module.scss'
 import { usePlayer } from '@/stores/usePlayer'
+import type { Track } from '@prisma/client'
+import PauseBig from 'assets/icons/pause-big.svg'
+import Pause from 'assets/icons/pause.svg'
+import PlayBig from 'assets/icons/play-big.svg'
+import Play from 'assets/icons/play.svg'
+import clsx from 'clsx'
+import type { NextPage } from 'next'
+import styles from './PlayTrack.module.scss'
 
 interface IProps {
   isCurrentPath: boolean
@@ -68,12 +68,12 @@ const PlayTrack: NextPage<IProps> = ({
         size === 'small' ? (
           <Pause className='mx-auto' onClick={pauseTrack} />
         ) : (
-          <PauseBig className='mx-auto' onClick={pauseTrack} />
+          <PauseBig className='mx-auto cursor-pointer' onClick={pauseTrack} />
         )
       ) : size === 'small' ? (
         <Play className='mx-auto' onClick={playTrack} />
       ) : (
-        <PlayBig className='mx-auto' onClick={playTrack} />
+        <PlayBig className='mx-auto cursor-pointer' onClick={playTrack} />
       )}
     </div>
   )

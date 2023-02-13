@@ -10,6 +10,6 @@ export const menuLinks: IMenuLink[] = [
   { name: 'Главная', path: '/', icon: Home },
   { name: 'Поиск', path: '/search', icon: Search },
   { name: 'Моя медиатека', path: '/your-library', icon: Library },
-  { name: 'Любимые треки', path: '/liked-songs', icon: LikedSongs },
+  { name: 'Любимые треки', path: '/liked-tracks', icon: LikedSongs },
   { name: 'Создать плейлист', path: '/create-playlist', icon: CreatePlaylist }
 ]

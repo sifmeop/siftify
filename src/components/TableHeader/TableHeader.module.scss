@@ -1,10 +1,10 @@
 @import 'styles/mixins';
 
-.head {
+.table {
   @apply mb-3 items-center border-b border-b-border p-2 pb-1;
   @include gridTable;
 }
 
-.headTitle {
+.tableHeader {
   @apply text-base font-semibold text-border;
 }

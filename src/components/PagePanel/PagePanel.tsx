@@ -1,7 +1,7 @@
-import Favorite from '../Favorite/Favorite'
+import type { Track } from '@prisma/client'
 import type { NextPage } from 'next'
+import Favorite from '../Favorite/Favorite'
 import PlayTrack from '../PlayTrack/PlayTrack'
-import { Track } from '@prisma/client'
 import styles from './PagePanel.module.scss'
 
 interface IProps {

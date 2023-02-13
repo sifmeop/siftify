@@ -8,3 +8,11 @@
   @apply grid;
   grid-template-columns: [index] 3rem [title] 6fr [favorite] 3.125rem [duration] 4.375rem;
 }
+
+@mixin trackTitle {
+  @apply text-2xl;
+}
+
+@mixin featuring {
+  @apply text-base font-medium text-primary-light;
+}

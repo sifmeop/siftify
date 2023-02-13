@@ -14,7 +14,7 @@ const config = {
     return config
   },
   images: {
-    domains: ['static-cdn.jtvnw.net']
+    domains: ['static-cdn.jtvnw.net', 'lh3.googleusercontent.com']
   }
 }
 export default config

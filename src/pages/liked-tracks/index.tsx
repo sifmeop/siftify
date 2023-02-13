@@ -1,14 +1,14 @@
-import LikedSongs from '@/components/screens/liked-songs/LikedSongs'
+import LikedTracks from '@/components/screens/liked-tracks/LikedTracks'
 import Meta from '@/utils/Meta'
 import { type NextPage } from 'next'
 
-const LikedSongsPage: NextPage = () => {
+const LikedTracksPage: NextPage = () => {
   return (
     <>
       <Meta title='Любимые треки' description='Список любимых треков' />
-      <LikedSongs />
+      <LikedTracks />
     </>
   )
 }
 
-export default LikedSongsPage
+export default LikedTracksPage
