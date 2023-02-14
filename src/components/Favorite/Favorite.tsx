@@ -28,7 +28,7 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
   const { refetch: refetchAddToFavorites } =
     api.favorites.addToFavorites.useQuery(
       { trackId: track?.id, userId },
-      { enabled: !!sessionData }
+      { enabled: false }
     )
 
   const { refetch: refetchDeleteFromFavorites } =
@@ -38,10 +38,11 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
           favorites?.find((favorite) => favorite.trackId === track?.id)?.id
         )
       },
-      { enabled: !!sessionData }
+      { enabled: false }
     )
 
   const addToFavorites = async () => {
+    if (!sessionData) return
     const res = await refetchAddToFavorites()
     addFavorite({
       id: String(res.data?.id),
@@ -52,6 +53,7 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
   }
 
   const deleteFromFavorites = async () => {
+    if (!sessionData) return
     const res = await refetchDeleteFromFavorites()
     removeFavorite({ id: String(res.data?.id), userId, trackId: track?.id })
     console.log(`Удален трек ${track?.title}`)
