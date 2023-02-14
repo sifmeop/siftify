@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#F9F9F9] text-xl font-bold text-primary;
+  /* @apply bg-[#F9F9F9] text-xl font-bold text-primary; */
+  @apply bg-[#ffffff] text-xl font-bold text-primary;
   font-family: 'Montserrat', sans-serif;
 }

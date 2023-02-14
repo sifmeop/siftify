@@ -1,4 +1,4 @@
 .sidebar {
-  @apply fixed top-0 left-0 z-50 flex h-full w-full max-w-header-width flex-col gap-[0.625rem] bg-[#EFEFEF] p-[1.875rem];
+  @apply fixed top-0 left-0 z-50 flex h-full w-full max-w-header-width flex-col gap-[0.625rem] bg-primary-gray p-[1.875rem];
   border-right: 1px solid #606065;
 }

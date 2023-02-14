@@ -6,7 +6,11 @@ import styles from './GoBack.module.scss'
 const GoBack: NextPage = () => {
   const router = useRouter()
 
-  return <ArrowLeft className={styles.button} onClick={() => router.back()} />
+  return (
+    <div>
+      <ArrowLeft className={styles.goBack} onClick={() => router.back()} />
+    </div>
+  )
 }
 
 export default GoBack

@@ -7,11 +7,12 @@ module.exports = {
         primary: '#4A4B52',
         'primary-light': '#949497',
         'primary-blue': '#47B5FF',
-        'primary-blue-light': '#67C1FD',
+        'primary-blue-light': 'rgba(0, 102, 255, 0.1)',
         'primary-blue-dark': '#20A5FF',
         secondary: '#5F5D64',
         'secondary-light': '#8A8F96',
         'secondary-more-light': '#BBBBC1',
+        'primary-gray': '#f9f9f9',
         tertiary: '#B5B5B9',
         border: '#606065'
       },

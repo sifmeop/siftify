@@ -1,19 +1,14 @@
 .loader {
-  width: 48px;
-  height: 48px;
+  @apply relative mx-auto block h-12 w-12;
   border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  border: 3px solid;
-  border-color: #fff #fff transparent transparent;
-  box-sizing: border-box;
+  border: 3px solid #fff #fff transparent transparent;
   animation: rotation 1s linear infinite;
   &::after,
   &::before {
     content: '';
-    @apply absolute left-0 right-0 top-0 bottom-0 m-auto h-10 w-10;
-    border: 3px solid;
-    border-color: transparent transparent #ff3d00 #ff3d00;
+    @apply absolute left-0 right-0 top-0 bottom-0 m-auto h-12 w-12;
+    border: 6px solid;
+    border-color: transparent transparent #0066ff #0066ff;
     border-radius: 50%;
     animation: rotationBack 0.5s linear infinite;
     transform-origin: center center;

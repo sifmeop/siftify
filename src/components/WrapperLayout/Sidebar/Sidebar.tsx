@@ -7,13 +7,15 @@ import Separator from './Separator/Separator'
 import styles from './Sidebar.module.scss'
 
 const Sidebar: NextPage = () => {
-  const playlistLinks: IPlaylistLink[] = [
-    { name: 'Мой топ 2022', path: '/playlist/asd1' },
-    { name: 'Мой топ 2021', path: '/playlist/asd2' },
-    { name: 'Радар новинок', path: '/playlist/asd3' },
-    { name: 'sad songs', path: '/playlist/asd4' },
-    { name: 'Ambient music', path: '/playlist/asd5' }
-  ]
+  // const playlistLinks: IPlaylistLink[] = [
+  //   { name: 'Мой топ 2022', path: '/playlist/asd1' },
+  //   { name: 'Мой топ 2021', path: '/playlist/asd2' },
+  //   { name: 'Радар новинок', path: '/playlist/asd3' },
+  //   { name: 'sad songs', path: '/playlist/asd4' },
+  //   { name: 'Ambient music', path: '/playlist/asd5' }
+  // ]
+
+  const playlistLinks: IPlaylistLink[] = []
 
   return (
     <div className={styles.sidebar}>

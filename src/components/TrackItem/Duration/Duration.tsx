@@ -1,8 +1,9 @@
-import type { NextPage } from 'next'
+import LoaderDuration from '@/components/ui/Loaders/LoaderDuration/LoaderDuration'
+import { useDuration } from '@/hooks/useDuration'
 import type { Track } from '@prisma/client'
+import type { NextPage } from 'next'
 import { memo } from 'react'
 import styles from './Duration.module.scss'
-import { useDuration } from '@/hooks/useDuration'
 
 interface IProps {
   track: Track
@@ -11,7 +12,15 @@ interface IProps {
 const Duration: NextPage<IProps> = ({ track }) => {
   const duration = useDuration(track, 'short')
 
-  return <div className={styles.duration}>{duration}</div>
+  return (
+    <>
+      {duration ? (
+        <div className={styles.duration}>{duration}</div>
+      ) : (
+        <LoaderDuration />
+      )}
+    </>
+  )
 }
 
 export default memo(Duration)

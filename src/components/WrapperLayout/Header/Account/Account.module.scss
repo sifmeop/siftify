@@ -1,5 +1,6 @@
 .account {
-  @apply relative flex cursor-pointer items-center gap-3;
+  @apply relative flex cursor-pointer items-center gap-3 rounded-lg px-4 py-2 hover:bg-primary-blue-light;
+  transition: all 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
 }
 
 .avatar {

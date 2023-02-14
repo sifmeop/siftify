@@ -21,7 +21,10 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
   const isCurrentPath = currentSong?.title === track.title
 
   return (
-    <div className={clsx(styles.track, { ['bg-white']: isCurrentPath })}>
+    <div
+      className={clsx(styles.track, {
+        [styles.currentTrack as string]: isCurrentPath
+      })}>
       <div>
         <div className={clsx(styles.trackIndex, 'text-center')}>
           <span style={{ display: isCurrentPath ? 'none' : 'block' }}>

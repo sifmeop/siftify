@@ -3,13 +3,22 @@
 }
 
 .link {
-  @apply flex items-center gap-5 p-2;
+  @apply flex items-center gap-5 rounded-lg p-2;
+  transition: all 1s cubic-bezier(0.14, 0.65, 0.15, 1);
+  &:hover {
+    background-color: #f1f1f1;
+  }
 }
 
 .active {
-  @apply font-bold text-primary-blue;
+  @apply font-bold;
+  color: rgb(0, 102, 255);
+  background-color: rgba(0, 102, 255, 0.1);
   & svg path {
     stroke: currentColor;
     stroke-width: 3;
+  }
+  &:hover {
+    background-color: rgba(0, 102, 255, 0.1);
   }
 }

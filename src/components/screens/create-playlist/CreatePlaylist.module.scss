@@ -22,9 +22,9 @@
 
 .create {
   @apply w-full rounded-lg bg-primary-blue px-4 py-2 text-white shadow-md;
-  transition: background-color 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
+  transition: background-color 1s cubic-bezier(0.14, 0.65, 0.15, 1);
   &:hover {
-    @apply bg-primary-blue-light;
+    background-color: #67c1fd;
   }
   &:active {
     @apply bg-primary-blue-dark;

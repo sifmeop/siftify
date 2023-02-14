@@ -21,8 +21,7 @@ const Equalizer: NextPage<IProps> = ({
           xmlnsXlink='http://www.w3.org/1999/xlink'
           style={{
             display: isPlaying ? 'block' : 'none',
-            margin: 'auto',
-            backgroundColor: 'white'
+            margin: 'auto'
           }}
           width='1.5625rem'
           height='1.5625rem'
