@@ -1,14 +1,14 @@
-import InFavorites from 'assets/icons/in-favorites.svg'
-import type { NextPage } from 'next'
-import NotInFavorites from 'assets/icons/not-in-favorites.svg'
-import type { Track } from '@prisma/client'
-import { api } from '@/utils/api'
-import clsx from 'clsx'
-import { memo } from 'react'
-import styles from './Favorite.module.scss'
 import { useFavorites } from '@/stores/useFavorites'
 import { usePlayer } from '@/stores/usePlayer'
+import { api } from '@/utils/api'
+import type { Track } from '@prisma/client'
+import InFavorites from 'assets/icons/in-favorites.svg'
+import NotInFavorites from 'assets/icons/not-in-favorites.svg'
+import clsx from 'clsx'
+import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
+import { memo } from 'react'
+import styles from './Favorite.module.scss'
 
 interface IProps {
   track: Track
@@ -28,7 +28,7 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
   const { refetch: refetchAddToFavorites } =
     api.favorites.addToFavorites.useQuery(
       { trackId: track?.id, userId },
-      { enabled: false }
+      { enabled: !!sessionData }
     )
 
   const { refetch: refetchDeleteFromFavorites } =
@@ -38,7 +38,7 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
           favorites?.find((favorite) => favorite.trackId === track?.id)?.id
         )
       },
-      { enabled: false }
+      { enabled: !!sessionData }
     )
 
   const addToFavorites = async () => {
