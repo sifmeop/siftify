@@ -42,7 +42,10 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
     )
 
   const addToFavorites = async () => {
-    if (!sessionData) return
+    if (!sessionData) {
+      alert('Для добавления трека в избранное необходимо авторизоваться')
+      return
+    }
     const res = await refetchAddToFavorites()
     addFavorite({
       id: String(res.data?.id),
@@ -53,7 +56,10 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
   }
 
   const deleteFromFavorites = async () => {
-    if (!sessionData) return
+    if (!sessionData) {
+      alert('Для удаления трека из избранного необходимо авторизоваться')
+      return
+    }
     const res = await refetchDeleteFromFavorites()
     removeFavorite({ id: String(res.data?.id), userId, trackId: track?.id })
     console.log(`Удален трек ${track?.title}`)
