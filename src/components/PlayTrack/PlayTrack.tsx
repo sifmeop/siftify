@@ -66,14 +66,20 @@ const PlayTrack: NextPage<IProps> = ({
       })}>
       {isCurrentPath && isPlaying ? (
         size === 'small' ? (
-          <Pause className='mx-auto' onClick={pauseTrack} />
+          <Pause className='mx-auto active:scale-95' onClick={pauseTrack} />
         ) : (
-          <PauseBig className='mx-auto cursor-pointer' onClick={pauseTrack} />
+          <PauseBig
+            className='mx-auto cursor-pointer active:scale-95'
+            onClick={pauseTrack}
+          />
         )
       ) : size === 'small' ? (
-        <Play className='mx-auto' onClick={playTrack} />
+        <Play className='mx-auto active:scale-95' onClick={playTrack} />
       ) : (
-        <PlayBig className='mx-auto cursor-pointer' onClick={playTrack} />
+        <PlayBig
+          className='mx-auto cursor-pointer active:scale-95'
+          onClick={playTrack}
+        />
       )}
     </div>
   )

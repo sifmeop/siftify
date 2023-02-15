@@ -20,7 +20,6 @@ interface IProps {
 const TrackItem: NextPage<IProps> = ({ track, index }) => {
   const currentSong = usePlayer((state) => state.currentSong)
   const isPlaying = usePlayer((state) => state.isPlaying)
-  const setIsPlaying = usePlayer((state) => state.setIsPlaying)
   const isCurrentPath = currentSong?.title === track.title
 
   const items: MenuProps['items'] = [
