@@ -12,7 +12,7 @@
 }
 
 .title {
-  @apply text-2xl;
+  @apply cursor-pointer text-2xl hover:underline;
   color: #4a4b52;
 }
 

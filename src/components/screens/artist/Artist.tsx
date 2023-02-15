@@ -35,7 +35,11 @@ const Artist: NextPage<IProps> = ({ artist }) => {
           </>
         }
         title={artist.name}
-        info={`${String(tracks?.length)} ${checkTracksLength(tracks?.length)}`}
+        info={
+          tracks
+            ? `${String(tracks.length)} ${checkTracksLength(tracks?.length)}`
+            : ''
+        }
       />
       <div className={styles.tracksSection}>
         <div className='mb-5 flex justify-between'>
@@ -69,13 +73,12 @@ const Artist: NextPage<IProps> = ({ artist }) => {
             </div>
           ))}
         </div>
-        {showMore && (
-          <PopupTracks
-            artist={artist.name}
-            tracks={tracks}
-            onClose={setShowMore}
-          />
-        )}
+        <PopupTracks
+          artist={artist.name}
+          tracks={tracks}
+          setState={setShowMore}
+          state={showMore}
+        />
       </div>
     </div>
   )

@@ -1,11 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  /* @apply bg-[#F9F9F9] text-xl font-bold text-primary; */
   @apply bg-[#ffffff] text-xl font-bold text-primary;
   font-family: 'Montserrat', sans-serif;
+}
+
+.css-dev-only-do-not-override-diro6f a:hover {
+  color: currentColor;
+}
+
+.ant-modal .ant-modal-close {
+  place-items: center;
+  display: grid;
+}
+
+.ant-modal .ant-modal-close-x {
+  display: flex;
 }

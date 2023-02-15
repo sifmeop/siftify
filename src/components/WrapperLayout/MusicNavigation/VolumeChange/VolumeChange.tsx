@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { usePlayer } from '@/stores/usePlayer'
+import { Tooltip } from 'antd'
 import VolumeHigh from 'assets/icons/volume-high.svg'
 import VolumeLow from 'assets/icons/volume-low.svg'
 import VolumeMedium from 'assets/icons/volume-medium.svg'
@@ -70,7 +71,7 @@ const VolumeChange: NextPage = () => {
 
   return (
     <div className={styles.volume}>
-      {handleChangeVolume()}
+      <Tooltip title='Изменить громкость'>{handleChangeVolume()}</Tooltip>
       <input
         style={{
           background: `linear-gradient(to right, #47B5FF ${

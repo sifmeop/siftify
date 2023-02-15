@@ -28,7 +28,7 @@ const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
           alt={track.title}
         />
         <div className='flex flex-col items-start gap-3'>
-          <h1 className='text-2xl font-bold hover:underline'>
+          <h1 className={styles.title}>
             <Link href={`/track/${track.id}`}>{track.title}</Link>
           </h1>
           <div className='flex items-center gap-3'>

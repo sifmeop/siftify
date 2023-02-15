@@ -1,7 +1,18 @@
-.track:not(:last-child) {
-  @apply mb-4 border-b border-gray-300 pb-4;
+.track {
+  @apply text-primary;
+  font-family: 'Montserrat', sans-serif;
+  &:not(:last-child) {
+    @apply mb-4 border-b border-gray-300 pb-4;
+  }
 }
 
 .image {
   @apply mb-3;
+}
+
+.title {
+  @apply text-3xl font-bold hover:underline;
+  &:hover {
+    @apply text-primary;
+  }
 }

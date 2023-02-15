@@ -33,7 +33,7 @@
 }
 
 .title {
-  @apply text-2xl;
+  @apply inline-block text-xl hover:underline;
 }
 
 .featuring {

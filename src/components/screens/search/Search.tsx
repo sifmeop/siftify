@@ -1,23 +1,23 @@
-import { CiSearch } from 'react-icons/ci'
-import type { NextPage } from 'next'
-import SearchArtist from './SearchArtist/SearchArtist'
-import SearchTrack from './SearchTracks/SearchTrack'
-import { VscClose } from 'react-icons/vsc'
+import { useDebounce } from '@/hooks/useDebounce'
 import { api } from '@/utils/api'
 import clsx from 'clsx'
-import styles from './Search.module.scss'
-import { useDebounce } from '@/hooks/useDebounce'
+import type { NextPage } from 'next'
 import { useState } from 'react'
+import { CiSearch } from 'react-icons/ci'
+import { VscClose } from 'react-icons/vsc'
+import styles from './Search.module.scss'
+import SearchArtist from './SearchArtist/SearchArtist'
+import SearchTrack from './SearchTracks/SearchTrack'
 
 const Search: NextPage = () => {
   const [search, setSearch] = useState<string>('')
   const debounce = useDebounce(search)
   const { data: tracks } = api.tracks.searchTrack.useQuery(
-    { search: debounce },
+    { search: debounce.trim() },
     { enabled: debounce.length > 0 }
   )
   const { data: artists } = api.artists.searchArtist.useQuery(
-    { search: debounce },
+    { search: debounce.trim() },
     { enabled: debounce.length > 0 }
   )
 

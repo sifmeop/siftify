@@ -4,13 +4,13 @@ import { useCallback, useEffect } from 'react'
 
 import Favorite from '@/components/Favorite/Favorite'
 import { usePlayer } from '@/stores/usePlayer'
-import Empty from 'assets/empty.jpg'
 import Add from 'assets/icons/add.svg'
 import Random from 'assets/icons/random.svg'
 import SkipBack from 'assets/icons/skip-back.svg'
 import SkipForward from 'assets/icons/skip-forward.svg'
 import type { NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { IoClose } from 'react-icons/io5'
 import styles from './MusicNavigation.module.scss'
 import PlayTrack from './PlayTrack/PlayTrack'
@@ -43,20 +43,20 @@ const MusicNavigation: NextPage = () => {
         <ProgressBar />
         <div className={styles.controlPanel}>
           <div className={styles.infoArtist}>
-            {currentSong?.image ? (
-              <Image
-                width={100}
-                height={100}
-                src={`/${currentSong?.image}`}
-                alt={`/${currentSong?.title}`}
-              />
-            ) : (
-              <Image width={100} height={100} src={Empty} alt={'Empty'} />
-            )}
+            <Image
+              width={100}
+              height={100}
+              src={`/${currentSong.image}`}
+              alt={`/${currentSong.title}`}
+            />
             <div>
-              <h3 className={styles.title}>{currentSong?.title ?? ''}</h3>
+              <h3 className={styles.title}>
+                <Link href={`/track/${currentSong.id}`}>
+                  {currentSong.title}
+                </Link>
+              </h3>
               <p className={styles.featuring}>
-                {currentSong?.featuring.join(', ') ?? ''}
+                {currentSong.featuring.join(', ')}
               </p>
             </div>
           </div>

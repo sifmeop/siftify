@@ -1,3 +1,5 @@
+import { message, Tooltip } from 'antd'
+
 import { useFavorites } from '@/stores/useFavorites'
 import { usePlayer } from '@/stores/usePlayer'
 import { api } from '@/utils/api'
@@ -43,7 +45,9 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
 
   const addToFavorites = async () => {
     if (!sessionData) {
-      alert('Для добавления трека в избранное необходимо авторизоваться')
+      await message.error(
+        'Для добавления трека в избранное необходимо авторизоваться'
+      )
       return
     }
     const res = await refetchAddToFavorites()
@@ -52,36 +56,41 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
       trackId: track.id,
       userId
     })
-    console.log(`Добавлен трек ${track?.title}`)
+    await message.success(`Добавлен трек ${track?.title}`)
   }
 
   const deleteFromFavorites = async () => {
     if (!sessionData) {
-      alert('Для удаления трека из избранного необходимо авторизоваться')
+      await message.error(
+        'Для удаления трека из избранного необходимо авторизоваться'
+      )
       return
     }
     const res = await refetchDeleteFromFavorites()
     removeFavorite({ id: String(res.data?.id), userId, trackId: track?.id })
-    console.log(`Удален трек ${track?.title}`)
+    await message.success(`Удален трек ${track?.title}`)
   }
 
   return (
     <>
-      {favorites &&
-      favorites.some((favorite) => favorite.trackId === track?.id) ? (
-        <InFavorites
-          onClick={deleteFromFavorites}
-          className={clsx(className, styles.inFavorites, {
-            [styles.visibleIcon as string]: isCurrentPath
-          })}
-        />
+      {favorites?.some((favorite) => favorite.trackId === track?.id) ? (
+        <Tooltip title='Удалить с избранного'>
+          <InFavorites
+            onClick={deleteFromFavorites}
+            className={clsx(className, styles.inFavorites, {
+              [styles.visibleIcon as string]: isCurrentPath
+            })}
+          />
+        </Tooltip>
       ) : (
-        <NotInFavorites
-          onClick={addToFavorites}
-          className={clsx(className, 'cursor-pointer', {
-            [styles.visibleIcon as string]: isCurrentPath
-          })}
-        />
+        <Tooltip title='Добавить в избранное'>
+          <NotInFavorites
+            onClick={addToFavorites}
+            className={clsx(className, 'cursor-pointer', {
+              [styles.visibleIcon as string]: isCurrentPath
+            })}
+          />
+        </Tooltip>
       )}
     </>
   )
