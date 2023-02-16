@@ -11,7 +11,13 @@ interface IProps {
 const SearchTrack: NextPage<IProps> = ({ track }) => {
   return (
     <div className={styles.track}>
-      <Image width={70} height={70} src={`/${track.image}`} alt={track.title} />
+      <Image
+        width={70}
+        height={70}
+        src={`/${track.image}`}
+        alt={track.title}
+        priority
+      />
       <div>
         <h1 className={styles.title}>
           <Link href={`/track/${track.id}`}>{track.title}</Link>

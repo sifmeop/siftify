@@ -37,24 +37,24 @@ const VolumeChange: NextPage = () => {
     if (volume === 0) {
       return (
         <VolumeNone
-          className='cursor-pointer'
+          className='player-button'
           onClick={() => setVolume(prevStateVolume)}
         />
       )
     } else if (volume > 30 && volume <= 70) {
       return (
         <VolumeMedium
-          className='cursor-pointer'
+          className='player-button'
           onClick={handlePrevSaveVolume}
         />
       )
     } else if (volume > 0 && volume <= 50) {
       return (
-        <VolumeLow className='cursor-pointer' onClick={handlePrevSaveVolume} />
+        <VolumeLow className='player-button' onClick={handlePrevSaveVolume} />
       )
     } else {
       return (
-        <VolumeHigh className='cursor-pointer' onClick={handlePrevSaveVolume} />
+        <VolumeHigh className='player-button' onClick={handlePrevSaveVolume} />
       )
     }
   }

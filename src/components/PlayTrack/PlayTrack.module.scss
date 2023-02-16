@@ -1,3 +1,11 @@
 .controlPanel {
   display: block !important;
 }
+
+.sizeSmall {
+  @apply mx-auto active:scale-90;
+}
+
+.sizeBig {
+  @apply mx-auto cursor-pointer active:scale-90;
+}

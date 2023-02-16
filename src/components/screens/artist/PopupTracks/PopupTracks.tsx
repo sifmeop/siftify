@@ -12,14 +12,10 @@ interface IProps {
 }
 
 const PopupTracks: NextPage<IProps> = ({ state, setState, artist, tracks }) => {
-  const handleOk = () => {
-    setState(false)
-  }
   return (
     <Modal
       title={<h2 className='text-xl font-bold'>Синглы артиста {artist}</h2>}
       open={state}
-      onOk={handleOk}
       onCancel={() => setState(false)}
       width={800}
       footer={null}>

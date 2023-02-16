@@ -1,8 +1,8 @@
-import type { NextPage } from 'next'
+import { usePlayer } from '@/stores/usePlayer'
 import Pause from 'assets/icons/pause-big.svg'
 import Play from 'assets/icons/play-big.svg'
+import type { NextPage } from 'next'
 import { useEffect } from 'react'
-import { usePlayer } from '@/stores/usePlayer'
 
 const PlayTrack: NextPage = () => {
   const isPlaying = usePlayer((state) => state.isPlaying)
@@ -15,14 +15,14 @@ const PlayTrack: NextPage = () => {
     } else {
       void audioSrc?.pause()
     }
-  }, [isPlaying])
+  }, [audioSrc, isPlaying])
 
   return (
     <>
       {isPlaying ? (
-        <Pause onClick={() => setIsPlaying(false)} />
+        <Pause className='player-button' onClick={() => setIsPlaying(false)} />
       ) : (
-        <Play onClick={() => setIsPlaying(true)} />
+        <Play className='player-button' onClick={() => setIsPlaying(true)} />
       )}
     </>
   )

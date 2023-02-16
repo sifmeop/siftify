@@ -1,7 +1,9 @@
+import { Dropdown, message } from 'antd'
+
 import { usePlayer } from '@/stores/usePlayer'
+import { useQueue } from '@/stores/useQueue'
 import type { Track } from '@prisma/client'
 import type { MenuProps } from 'antd'
-import { Dropdown } from 'antd'
 import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Link from 'next/link'
@@ -21,15 +23,34 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
   const currentSong = usePlayer((state) => state.currentSong)
   const isPlaying = usePlayer((state) => state.isPlaying)
   const isCurrentPath = currentSong?.title === track.title
+  const queueList = useQueue((state) => state.queueList)
+  const addToQueue = useQueue((state) => state.addToQueue)
+  const removeFromQueue = useQueue((state) => state.removeFromQueue)
+
+  const handleAddToQueue = () => {
+    addToQueue(track)
+    void message.success(`Добавлен в очередь трек: ${track.title}`)
+  }
+
+  const handleRemoveFromQueue = () => {
+    removeFromQueue(track.id)
+    void message.success(`Удален из очереди трек: ${track.title}`)
+  }
 
   const items: MenuProps['items'] = [
     {
-      label: 'Добавить в очередь',
+      label: <span onClick={handleAddToQueue}>Добавить в очередь</span>,
       key: '1'
     },
     {
+      label: <span onClick={handleRemoveFromQueue}>Удалить из очереди</span>,
+      key: '2',
+      disabled: !queueList.includes(track)
+    },
+    { type: 'divider' },
+    {
       label: 'Добавить в избранное',
-      key: '2'
+      key: '3'
     }
   ]
 

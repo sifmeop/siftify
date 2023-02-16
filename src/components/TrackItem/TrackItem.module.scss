@@ -3,6 +3,7 @@
 .track {
   @apply grid items-center rounded-lg p-2;
   @include gridTable;
+  font-family: 'Montserrat', sans-serif;
   transition: all 1s cubic-bezier(0.14, 0.65, 0.15, 1);
   &:hover {
     background-color: rgba(153, 193, 255, 0.1);
@@ -33,7 +34,7 @@
 }
 
 .title {
-  @apply inline-block text-xl hover:underline;
+  @apply inline-block text-xl text-primary hover:underline;
 }
 
 .featuring {

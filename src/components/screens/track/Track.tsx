@@ -1,13 +1,13 @@
 import ArtistCard from '@/components/ArtistCard/ArtistCard'
-import type { Track as ITrack } from '@prisma/client'
-import type { NextPage } from 'next'
 import PagePanel from '@/components/PagePanel/PagePanel'
 import TableHeader from '@/components/TableHeader/TableHeader'
 import TrackItem from '@/components/TrackItem/TrackItem'
-import { memo } from 'react'
-import styles from './Track.module.scss'
 import { useDuration } from '@/hooks/useDuration'
 import { usePlayer } from '@/stores/usePlayer'
+import type { Track as ITrack } from '@prisma/client'
+import type { NextPage } from 'next'
+import { memo } from 'react'
+import styles from './Track.module.scss'
 
 interface IProps {
   track: ITrack

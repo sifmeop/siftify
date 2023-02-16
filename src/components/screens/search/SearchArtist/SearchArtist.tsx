@@ -17,6 +17,7 @@ const SearchArtist: NextPage<IProps> = ({ artist }) => {
         height={70}
         src={`/${artist.image}`}
         alt={artist.name}
+        priority
       />
       <h1 className={styles.name}>
         <Link href={`/artist/${artist.id}`}>{artist.name}</Link>

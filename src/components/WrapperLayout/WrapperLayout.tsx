@@ -1,4 +1,5 @@
 import { useFavorites } from '@/stores/useFavorites'
+import { useQueue } from '@/stores/useQueue'
 import { api } from '@/utils/api'
 import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
@@ -14,6 +15,12 @@ const WrapperLayout: NextPage<PropsWithChildren> = ({ children }) => {
   const { data: sessionData } = useSession()
   const userId = String(sessionData?.user?.id)
 
+  const queueList = useQueue((state) => state.queueList)
+
+  useEffect(() => {
+    console.log(queueList)
+  }, [queueList])
+
   const setFavorites = useFavorites((state) => state.setFavorites)
 
   const { data: favorites } = api.favorites.getListFavorites.useQuery(
@@ -23,7 +30,6 @@ const WrapperLayout: NextPage<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     if (favorites) {
-      console.log(favorites)
       setFavorites(favorites)
     }
   }, [favorites])

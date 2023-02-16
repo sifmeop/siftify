@@ -32,6 +32,7 @@ const ArtistCard: NextPage<IProps> = ({
         src={typeof image === 'string' ? `/${image}` : image}
         alt={name}
         quality={100}
+        priority
       />
       <div className={styles.artistInfo}>
         <h2 className={styles.type}>{type}</h2>

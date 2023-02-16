@@ -19,3 +19,7 @@ body {
 .ant-modal .ant-modal-close-x {
   display: flex;
 }
+
+.player-button {
+  @apply cursor-pointer active:scale-90;
+}

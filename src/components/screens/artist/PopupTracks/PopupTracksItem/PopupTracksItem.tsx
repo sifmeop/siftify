@@ -26,6 +26,7 @@ const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
           height={150}
           src={`/${track.image}`}
           alt={track.title}
+          priority
         />
         <div className='flex flex-col items-start gap-3'>
           <h1 className={styles.title}>

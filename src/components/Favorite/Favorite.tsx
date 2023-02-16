@@ -77,7 +77,7 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
         <Tooltip title='Удалить с избранного'>
           <InFavorites
             onClick={deleteFromFavorites}
-            className={clsx(className, styles.inFavorites, {
+            className={clsx(className, 'player-button', {
               [styles.visibleIcon as string]: isCurrentPath
             })}
           />
@@ -86,7 +86,7 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
         <Tooltip title='Добавить в избранное'>
           <NotInFavorites
             onClick={addToFavorites}
-            className={clsx(className, 'cursor-pointer', {
+            className={clsx(className, 'player-button', {
               [styles.visibleIcon as string]: isCurrentPath
             })}
           />

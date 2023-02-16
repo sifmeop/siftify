@@ -22,6 +22,7 @@ const Home: NextPage = () => {
                 alt={artist.name}
                 placeholder='blur'
                 blurDataURL={`/${artist.image}`}
+                priority
               />
               <h1 className={styles.name}>
                 <Link href={`/artist/${artist.id}`}>{artist.name}</Link>

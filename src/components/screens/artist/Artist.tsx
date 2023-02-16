@@ -62,6 +62,7 @@ const Artist: NextPage<IProps> = ({ artist }) => {
                   height={200}
                   src={`/${track.image}`}
                   alt={`Picture of the track ${track.title}`}
+                  priority
                 />
               </Link>
               <h1 className={clsx(styles.title, styles.ellipsis)}>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import type { Track } from '@prisma/client'
 import { formatDuration } from '@/utils/formatDuration'
+import type { Track } from '@prisma/client'
 
 export const useDuration = (track: Track, type: 'short' | 'normal') => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null)

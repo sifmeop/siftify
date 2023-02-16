@@ -4,10 +4,11 @@ import { useCallback, useEffect } from 'react'
 
 import Favorite from '@/components/Favorite/Favorite'
 import { usePlayer } from '@/stores/usePlayer'
+import { useQueue } from '@/stores/useQueue'
 import Add from 'assets/icons/add.svg'
 import Random from 'assets/icons/random.svg'
-import SkipBack from 'assets/icons/skip-back.svg'
-import SkipForward from 'assets/icons/skip-forward.svg'
+import PreviousTrack from 'assets/icons/skip-back.svg'
+import NextTrack from 'assets/icons/skip-forward.svg'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -15,6 +16,7 @@ import { IoClose } from 'react-icons/io5'
 import styles from './MusicNavigation.module.scss'
 import PlayTrack from './PlayTrack/PlayTrack'
 import ProgressBar from './ProgressBar/ProgressBar'
+import QueueList from './QueueList/QueueList'
 import RepeatTrack from './RepeatTrack/RepeatTrack'
 import VolumeChange from './VolumeChange/VolumeChange'
 
@@ -23,14 +25,32 @@ const MusicNavigation: NextPage = () => {
   const currentSong = usePlayer((state) => state.currentSong)
   const setCurrentSong = usePlayer((state) => state.setCurrentSong)
   const setIsPlaying = usePlayer((state) => state.setIsPlaying)
+  const queueList = useQueue((state) => state.queueList)
+  const nextTrack = useQueue((state) => state.nextTrack)
+  const previousTrack = useQueue((state) => state.previousTrack)
+
+  const handleNextTrack = useCallback(() => {
+    if (audioSrc && queueList.length > 0) {
+      nextTrack()
+      if (audioSrc.paused) {
+        setIsPlaying(true)
+      }
+    }
+  }, [audioSrc, queueList])
+
+  const handlePreviousTrack = useCallback(() => {
+    previousTrack()
+  }, [])
 
   useEffect(() => {
-    if (audioSrc) {
-      audioSrc.addEventListener('ended', () => {
+    audioSrc?.addEventListener('ended', () => {
+      if (queueList.length === 0) {
         setIsPlaying(false)
-      })
-    }
-  }, [audioSrc, setIsPlaying])
+        return
+      }
+      handleNextTrack()
+    })
+  }, [audioSrc, handleNextTrack])
 
   const closeNavigation = useCallback(() => {
     setIsPlaying(false)
@@ -48,6 +68,7 @@ const MusicNavigation: NextPage = () => {
               height={100}
               src={`/${currentSong.image}`}
               alt={`/${currentSong.title}`}
+              priority
             />
             <div>
               <h3 className={styles.title}>
@@ -61,15 +82,19 @@ const MusicNavigation: NextPage = () => {
             </div>
           </div>
           <div className={styles.control}>
-            <Random />
-            <SkipBack />
+            <Random className='player-button' />
+            <PreviousTrack
+              className='player-button'
+              onClick={handlePreviousTrack}
+            />
             <PlayTrack />
-            <SkipForward />
+            <NextTrack className='player-button' onClick={handleNextTrack} />
             <RepeatTrack />
           </div>
           <div className={styles.volume}>
             <Favorite track={currentSong} />
             <Add className={styles.iconStyles} />
+            <QueueList />
             <VolumeChange />
           </div>
         </div>

@@ -55,10 +55,6 @@ const PlayTrack: NextPage<IProps> = ({
     track
   ])
 
-  const pauseTrack = useCallback(() => {
-    setIsPlaying(false)
-  }, [setIsPlaying])
-
   return (
     <div
       className={clsx(className, {
@@ -66,20 +62,20 @@ const PlayTrack: NextPage<IProps> = ({
       })}>
       {isCurrentPath && isPlaying ? (
         size === 'small' ? (
-          <Pause className='mx-auto active:scale-95' onClick={pauseTrack} />
+          <Pause
+            className={styles.sizeSmall}
+            onClick={() => setIsPlaying(false)}
+          />
         ) : (
           <PauseBig
-            className='mx-auto cursor-pointer active:scale-95'
-            onClick={pauseTrack}
+            className={styles.sizeBig}
+            onClick={() => setIsPlaying(false)}
           />
         )
       ) : size === 'small' ? (
-        <Play className='mx-auto active:scale-95' onClick={playTrack} />
+        <Play className={styles.sizeSmall} onClick={playTrack} />
       ) : (
-        <PlayBig
-          className='mx-auto cursor-pointer active:scale-95'
-          onClick={playTrack}
-        />
+        <PlayBig className={styles.sizeBig} onClick={playTrack} />
       )}
     </div>
   )

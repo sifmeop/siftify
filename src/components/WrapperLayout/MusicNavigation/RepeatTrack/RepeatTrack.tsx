@@ -16,7 +16,7 @@ const RepeatTrack: NextPage = () => {
         audioSrc.loop = false
       }
     }
-  }, [isRepeat])
+  }, [audioSrc, isRepeat])
 
   useEffect(() => {
     setIsRepeat(false)
@@ -25,9 +25,9 @@ const RepeatTrack: NextPage = () => {
   return (
     <>
       {isRepeat ? (
-        <Repeat onClick={() => setIsRepeat(false)} />
+        <Repeat className='player-button' onClick={() => setIsRepeat(false)} />
       ) : (
-        <NoRepeat onClick={() => setIsRepeat(true)} />
+        <NoRepeat className='player-button' onClick={() => setIsRepeat(true)} />
       )}
     </>
   )
