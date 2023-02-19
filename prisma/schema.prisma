@@ -16,6 +16,7 @@ model Artist {
 
 model Track {
     id         String       @id @default(auto()) @map("_id") @db.ObjectId
+    queryId    String?
     title      String
     artist     Artist       @relation(fields: [artistId], references: [id])
     artistId   String

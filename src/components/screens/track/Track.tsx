@@ -3,7 +3,7 @@ import PagePanel from '@/components/PagePanel/PagePanel'
 import TableHeader from '@/components/TableHeader/TableHeader'
 import TrackItem from '@/components/TrackItem/TrackItem'
 import { useDuration } from '@/hooks/useDuration'
-import { usePlayer } from '@/stores/usePlayer'
+import { useIsCurrentTrack } from '@/hooks/useIsCurrentTrack'
 import type { Track as ITrack } from '@prisma/client'
 import type { NextPage } from 'next'
 import { memo } from 'react'
@@ -15,8 +15,7 @@ interface IProps {
 
 const Track: NextPage<IProps> = ({ track }) => {
   const duration = useDuration(track, 'normal')
-  const currentSong = usePlayer((state) => state.currentSong)
-  const isCurrentPath = currentSong?.title === track.title
+  const isCurrentTrack = useIsCurrentTrack(track.title)
 
   return (
     <div>
@@ -33,7 +32,7 @@ const Track: NextPage<IProps> = ({ track }) => {
           </>
         }
       />
-      <PagePanel track={track} isCurrentPath={isCurrentPath} />
+      <PagePanel track={track} isCurrentPath={isCurrentTrack} />
       <TableHeader />
       <TrackItem track={track} index={0} />
     </div>

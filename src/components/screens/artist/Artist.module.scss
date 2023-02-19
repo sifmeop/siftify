@@ -31,14 +31,12 @@
   @apply mb-3;
 }
 
-.ellipsis {
-  @apply overflow-hidden text-ellipsis whitespace-nowrap;
-}
-
 .title {
   @include trackTitle;
+  @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }
 
 .featuring {
   @include featuring;
+  @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }

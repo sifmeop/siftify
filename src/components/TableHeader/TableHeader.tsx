@@ -1,6 +1,6 @@
 import Duration from 'assets/icons/duration.svg'
-import type { NextPage } from 'next'
 import clsx from 'clsx'
+import type { NextPage } from 'next'
 import styles from './TableHeader.module.scss'
 
 const TableHeader: NextPage = () => {

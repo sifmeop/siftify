@@ -12,7 +12,7 @@ import styles from './VolumeChange.module.scss'
 const VolumeChange: NextPage = () => {
   const volume = usePlayer((state) => state.volume)
   const setVolume = usePlayer((state) => state.setVolume)
-  const audioSrc = usePlayer((state) => state.audioSrc)
+  const audio = usePlayer((state) => state.audio)
   const [prevStateVolume, setPrevStateVolume] = useState<number>(volume)
 
   useEffect(() => {
@@ -23,15 +23,15 @@ const VolumeChange: NextPage = () => {
   }, [])
 
   useEffect(() => {
-    if (audioSrc) {
+    if (audio) {
       if (volume === 0) {
-        audioSrc.muted = true
+        audio.muted = true
       } else {
-        audioSrc.muted = false
-        audioSrc.volume = volume / 100
+        audio.muted = false
+        audio.volume = volume / 100
       }
     }
-  }, [audioSrc, volume])
+  }, [audio, volume])
 
   const handleChangeVolume = () => {
     if (volume === 0) {

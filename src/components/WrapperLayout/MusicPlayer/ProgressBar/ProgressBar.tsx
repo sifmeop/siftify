@@ -6,30 +6,30 @@ import type { MouseEvent } from 'react'
 import styles from './ProgressBar.module.scss'
 
 const ProgressBar: NextPage = () => {
-  const audioSrc = usePlayer((state) => state.audioSrc)
+  const audio = usePlayer((state) => state.audio)
   const [trackProgress, setTrackProgress] = useState<number>(0)
 
   const progressRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleTimeUpdate = () => {
-      if (audioSrc) {
-        setTrackProgress((audioSrc.currentTime / audioSrc.duration) * 100)
+      if (audio) {
+        setTrackProgress((audio.currentTime / audio.duration) * 100)
       }
     }
-    audioSrc?.addEventListener('timeupdate', handleTimeUpdate)
+    audio?.addEventListener('timeupdate', handleTimeUpdate)
     return () => {
-      audioSrc?.removeEventListener('timeupdate', handleTimeUpdate)
+      audio?.removeEventListener('timeupdate', handleTimeUpdate)
     }
-  }, [audioSrc])
+  }, [audio])
 
   const handleRewindTime = (e: MouseEvent<HTMLDivElement>) => {
     const width = progressRef.current?.offsetWidth
     if (!width) return
     const offset = e.nativeEvent.offsetX
     const progress = (offset / width) * 100
-    if (audioSrc) {
-      audioSrc.currentTime = progress * (audioSrc.duration / 100)
+    if (audio) {
+      audio.currentTime = progress * (audio.duration / 100)
       setTrackProgress(progress)
     }
   }

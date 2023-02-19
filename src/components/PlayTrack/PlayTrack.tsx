@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 
 import { usePlayer } from '@/stores/usePlayer'
 import type { Track } from '@prisma/client'
@@ -23,37 +23,18 @@ const PlayTrack: NextPage<IProps> = ({
   track,
   size
 }) => {
-  const audioSrc = usePlayer((state) => state.audioSrc)
-  const setAudioSrc = usePlayer((state) => state.setAudioSrc)
+  const playTrack = usePlayer((state) => state.playTrack)
   const isPlaying = usePlayer((state) => state.isPlaying)
-  const setIsPlaying = usePlayer((state) => state.setIsPlaying)
-  const setCurrentSong = usePlayer((state) => state.setCurrentSong)
+  const audio = usePlayer((state) => state.audio)
+  const togglePlay = usePlayer((state) => state.togglePlay)
 
   useEffect(() => {
     if (isPlaying) {
-      void audioSrc?.play()
+      void audio?.play()
     } else {
-      void audioSrc?.pause()
+      void audio?.pause()
     }
-  }, [audioSrc, isPlaying])
-
-  const playTrack = useCallback(() => {
-    audioSrc?.pause()
-    if (!isCurrentPath) {
-      setIsPlaying(false)
-      setCurrentSong(track)
-      setAudioSrc(new Audio(`/${track.audio}`))
-      setIsPlaying(true)
-    }
-    setIsPlaying(true)
-  }, [
-    audioSrc,
-    isCurrentPath,
-    setIsPlaying,
-    setCurrentSong,
-    setAudioSrc,
-    track
-  ])
+  }, [audio, isPlaying])
 
   return (
     <div
@@ -64,18 +45,18 @@ const PlayTrack: NextPage<IProps> = ({
         size === 'small' ? (
           <Pause
             className={styles.sizeSmall}
-            onClick={() => setIsPlaying(false)}
+            onClick={() => togglePlay(false)}
           />
         ) : (
           <PauseBig
             className={styles.sizeBig}
-            onClick={() => setIsPlaying(false)}
+            onClick={() => togglePlay(false)}
           />
         )
       ) : size === 'small' ? (
-        <Play className={styles.sizeSmall} onClick={playTrack} />
+        <Play className={styles.sizeSmall} onClick={() => playTrack(track)} />
       ) : (
-        <PlayBig className={styles.sizeBig} onClick={playTrack} />
+        <PlayBig className={styles.sizeBig} onClick={() => playTrack(track)} />
       )}
     </div>
   )

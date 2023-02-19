@@ -3,7 +3,6 @@ import { api } from '@/utils/api'
 import { checkTracksLength } from '@/utils/checkTracksLength'
 import type { Artist as TypeArtist } from '@prisma/client'
 import Checkmark from 'assets/icons/checkmark.svg'
-import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -65,12 +64,10 @@ const Artist: NextPage<IProps> = ({ artist }) => {
                   priority
                 />
               </Link>
-              <h1 className={clsx(styles.title, styles.ellipsis)}>
+              <h1 className={styles.title}>
                 <Link href={`/track/${track.id}`}>{track.title}</Link>
               </h1>
-              <p className={clsx(styles.featuring, styles.ellipsis)}>
-                {track.featuring.join(', ')}
-              </p>
+              <p className={styles.featuring}>{track.featuring.join(', ')}</p>
             </div>
           ))}
         </div>

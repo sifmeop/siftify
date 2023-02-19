@@ -1,5 +1,4 @@
 import { useFavorites } from '@/stores/useFavorites'
-import { useQueue } from '@/stores/useQueue'
 import { api } from '@/utils/api'
 import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
@@ -7,19 +6,13 @@ import type { PropsWithChildren } from 'react'
 import { useEffect } from 'react'
 import Header from './Header/Header'
 import Main from './Main/Main'
-import MusicNavigation from './MusicNavigation/MusicNavigation'
+import MusicPlayer from './MusicPlayer/MusicPlayer'
 import Sidebar from './Sidebar/Sidebar'
 import styles from './WrapperLayout.module.scss'
 
 const WrapperLayout: NextPage<PropsWithChildren> = ({ children }) => {
   const { data: sessionData } = useSession()
   const userId = String(sessionData?.user?.id)
-
-  const queueList = useQueue((state) => state.queueList)
-
-  useEffect(() => {
-    console.log(queueList)
-  }, [queueList])
 
   const setFavorites = useFavorites((state) => state.setFavorites)
 
@@ -32,7 +25,7 @@ const WrapperLayout: NextPage<PropsWithChildren> = ({ children }) => {
     if (favorites) {
       setFavorites(favorites)
     }
-  }, [favorites])
+  }, [favorites, setFavorites])
 
   return (
     <>
@@ -41,7 +34,7 @@ const WrapperLayout: NextPage<PropsWithChildren> = ({ children }) => {
         <Header />
         <Main>{children}</Main>
       </div>
-      <MusicNavigation />
+      <MusicPlayer />
     </>
   )
 }

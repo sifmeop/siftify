@@ -4,61 +4,51 @@ import { useCallback, useEffect } from 'react'
 
 import Favorite from '@/components/Favorite/Favorite'
 import { usePlayer } from '@/stores/usePlayer'
-import { useQueue } from '@/stores/useQueue'
 import Add from 'assets/icons/add.svg'
-import Random from 'assets/icons/random.svg'
 import PreviousTrack from 'assets/icons/skip-back.svg'
 import NextTrack from 'assets/icons/skip-forward.svg'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { IoClose } from 'react-icons/io5'
-import styles from './MusicNavigation.module.scss'
+import { TbArrowsShuffle2 } from 'react-icons/tb'
+import styles from './MusicPlayer.module.scss'
 import PlayTrack from './PlayTrack/PlayTrack'
 import ProgressBar from './ProgressBar/ProgressBar'
 import QueueList from './QueueList/QueueList'
 import RepeatTrack from './RepeatTrack/RepeatTrack'
 import VolumeChange from './VolumeChange/VolumeChange'
 
-const MusicNavigation: NextPage = () => {
-  const audioSrc = usePlayer((state) => state.audioSrc)
-  const currentSong = usePlayer((state) => state.currentSong)
-  const setCurrentSong = usePlayer((state) => state.setCurrentSong)
-  const setIsPlaying = usePlayer((state) => state.setIsPlaying)
-  const queueList = useQueue((state) => state.queueList)
-  const nextTrack = useQueue((state) => state.nextTrack)
-  const previousTrack = useQueue((state) => state.previousTrack)
+const MusicPlayer: NextPage = () => {
+  const audio = usePlayer((state) => state.audio)
+  const currentTrack = usePlayer((state) => state.currentTrack)
+  const queueList = usePlayer((state) => state.queueList)
+  const nextTrack = usePlayer((state) => state.nextTrack)
+  const previousTrack = usePlayer((state) => state.previousTrack)
+  const togglePlay = usePlayer((state) => state.togglePlay)
+  const shuffle = usePlayer((state) => state.shuffle)
+  const setShuffle = usePlayer((state) => state.setShuffle)
 
   const handleNextTrack = useCallback(() => {
-    if (audioSrc && queueList.length > 0) {
+    if (audio && queueList.length > 0) {
       nextTrack()
-      if (audioSrc.paused) {
-        setIsPlaying(true)
+      if (audio.paused) {
+        togglePlay(true)
       }
     }
-  }, [audioSrc, queueList])
-
-  const handlePreviousTrack = useCallback(() => {
-    previousTrack()
-  }, [])
+  }, [audio, nextTrack, queueList.length, togglePlay])
 
   useEffect(() => {
-    audioSrc?.addEventListener('ended', () => {
+    audio?.addEventListener('ended', () => {
       if (queueList.length === 0) {
-        setIsPlaying(false)
+        togglePlay(false)
         return
       }
       handleNextTrack()
     })
-  }, [audioSrc, handleNextTrack])
-
-  const closeNavigation = useCallback(() => {
-    setIsPlaying(false)
-    setCurrentSong(null)
-  }, [setCurrentSong, setIsPlaying])
+  }, [audio, handleNextTrack, queueList.length, togglePlay])
 
   return (
-    currentSong && (
+    currentTrack && (
       <div className={styles.navigation}>
         <ProgressBar />
         <div className={styles.controlPanel}>
@@ -66,42 +56,43 @@ const MusicNavigation: NextPage = () => {
             <Image
               width={100}
               height={100}
-              src={`/${currentSong.image}`}
-              alt={`/${currentSong.title}`}
+              src={`/${currentTrack.image}`}
+              alt={`/${currentTrack.title}`}
               priority
             />
             <div>
               <h3 className={styles.title}>
-                <Link href={`/track/${currentSong.id}`}>
-                  {currentSong.title}
+                <Link href={`/track/${currentTrack.id}`}>
+                  {currentTrack.title}
                 </Link>
               </h3>
               <p className={styles.featuring}>
-                {currentSong.featuring.join(', ')}
+                {currentTrack.featuring.join(', ')}
               </p>
             </div>
           </div>
           <div className={styles.control}>
-            <Random className='player-button' />
-            <PreviousTrack
+            <TbArrowsShuffle2
+              size='2.5rem'
               className='player-button'
-              onClick={handlePreviousTrack}
+              onClick={setShuffle}
+              color={shuffle ? '#47b5ff' : '#8a8f96'}
             />
+            <PreviousTrack className='player-button' onClick={previousTrack} />
             <PlayTrack />
             <NextTrack className='player-button' onClick={handleNextTrack} />
             <RepeatTrack />
           </div>
           <div className={styles.volume}>
-            <Favorite track={currentSong} />
+            <Favorite track={currentTrack} />
             <Add className={styles.iconStyles} />
             <QueueList />
             <VolumeChange />
           </div>
         </div>
-        <IoClose onClick={closeNavigation} className={styles.closeNavigation} />
       </div>
     )
   )
 }
 
-export default MusicNavigation
+export default MusicPlayer

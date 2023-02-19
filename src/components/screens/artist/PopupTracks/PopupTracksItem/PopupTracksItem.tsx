@@ -1,7 +1,7 @@
 import Favorite from '@/components/Favorite/Favorite'
 import PlayTrack from '@/components/PlayTrack/PlayTrack'
-import TrackItem from '@/components/TrackItem/TrackItem'
-import { usePlayer } from '@/stores/usePlayer'
+import QueueTrackItem from '@/components/TrackItem/QueueTrackItem'
+import { useIsCurrentTrack } from '@/hooks/useIsCurrentTrack'
 import type { Track } from '@prisma/client'
 import type { NextPage } from 'next'
 import Image from 'next/image'
@@ -14,8 +14,7 @@ interface IProps {
 }
 
 const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
-  const currentSong = usePlayer((state) => state.currentSong)
-  const isCurrentPath = currentSong?.title === track.title
+  const isCurrentTrack = useIsCurrentTrack(track.title)
 
   return (
     <div className={styles.track}>
@@ -36,13 +35,13 @@ const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
             <PlayTrack
               size='small'
               track={track}
-              isCurrentPath={isCurrentPath}
+              isCurrentPath={isCurrentTrack}
             />
             <Favorite track={track} />
           </div>
         </div>
       </div>
-      <TrackItem track={track} index={index} />
+      <QueueTrackItem track={track} index={index} />
     </div>
   )
 }

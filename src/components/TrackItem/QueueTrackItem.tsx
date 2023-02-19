@@ -19,7 +19,7 @@ interface IProps {
   index: number
 }
 
-const TrackItem: NextPage<IProps> = ({ track, index }) => {
+const QueueTrackItem: NextPage<IProps> = ({ track, index }) => {
   const currentTrack = usePlayer((state) => state.currentTrack)
   const isPlaying = usePlayer((state) => state.isPlaying)
   const queueList = usePlayer((state) => state.queueList)
@@ -61,27 +61,28 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
     }
   ]
 
+  const checkCurrentTrack = currentTrack?.queryId === track.queryId
+
   return (
     <Dropdown menu={{ items }} trigger={['contextMenu']}>
       <div
         className={clsx(styles.track, {
-          [styles.currentTrack as string]:
-            !currentTrack?.queryId && currentTrack?.id === track.id
+          [styles.currentTrack as string]: checkCurrentTrack
         })}>
         <div>
-          <div className={styles.trackIndex}>
-            <span style={{ display: isCurrentTrack ? 'none' : 'block' }}>
+          <div className={clsx(styles.trackIndex, 'text-center')}>
+            <span style={{ display: checkCurrentTrack ? 'none' : 'block' }}>
               {index + 1}
             </span>
           </div>
           <PlayTrack
             size='small'
-            isCurrentPath={isCurrentTrack}
+            isCurrentPath={checkCurrentTrack}
             className={styles.controlPanel}
             track={track}
           />
           <Equalizer
-            isCurrentPath={isCurrentTrack}
+            isCurrentPath={checkCurrentTrack}
             className={styles.equalizer}
             isPlaying={isPlaying}
           />
@@ -99,4 +100,4 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
   )
 }
 
-export default memo(TrackItem)
+export default memo(QueueTrackItem)

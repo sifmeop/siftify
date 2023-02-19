@@ -6,23 +6,23 @@ import { useEffect } from 'react'
 
 const PlayTrack: NextPage = () => {
   const isPlaying = usePlayer((state) => state.isPlaying)
-  const setIsPlaying = usePlayer((state) => state.setIsPlaying)
-  const audioSrc = usePlayer((state) => state.audioSrc)
+  const audio = usePlayer((state) => state.audio)
+  const togglePlay = usePlayer((state) => state.togglePlay)
 
   useEffect(() => {
     if (isPlaying) {
-      void audioSrc?.play()
+      void audio?.play()
     } else {
-      void audioSrc?.pause()
+      void audio?.pause()
     }
-  }, [audioSrc, isPlaying])
+  }, [audio, isPlaying])
 
   return (
     <>
       {isPlaying ? (
-        <Pause className='player-button' onClick={() => setIsPlaying(false)} />
+        <Pause className='player-button' onClick={() => togglePlay(false)} />
       ) : (
-        <Play className='player-button' onClick={() => setIsPlaying(true)} />
+        <Play className='player-button' onClick={() => togglePlay(true)} />
       )}
     </>
   )

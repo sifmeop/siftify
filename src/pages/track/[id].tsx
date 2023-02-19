@@ -1,9 +1,9 @@
 import type { GetStaticProps, NextPage } from 'next'
 
-import type { Track as ITrack } from '@prisma/client'
-import Meta from '@/utils/Meta'
-import { PrismaClient } from '@prisma/client'
 import Track from '@/components/screens/track/Track'
+import Meta from '@/utils/Meta'
+import type { Track as ITrack } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 interface IProps {
   track: ITrack
