@@ -26,7 +26,7 @@ const CreatePlaylist: NextPage = () => {
     { enabled: false }
   )
 
-  const createPlaylist = async () => {
+  const createPlaylist = async (): Promise<void> => {
     const createdPlaylist = await refetch()
     console.log(createdPlaylist.data)
   }

@@ -1,42 +1,34 @@
 @import 'styles/mixins.scss';
 
-.tracksSection {
-  @apply mx-auto max-w-6xl;
+.playlists {
+  @apply flex gap-8;
 }
 
-.showMore {
-  @apply font-normal;
-  &:hover {
-    @apply underline;
-  }
-}
-
-.tracks {
-  @apply flex justify-center gap-8;
-}
-
-.track {
+.playlist {
   @apply rounded-lg bg-[#F0F0F0] p-3 shadow-md transition duration-300 ease-in-out;
   width: 12.5rem;
   &:hover {
     @apply scale-105 transform bg-primary-blue-light/20 shadow-lg;
-
-    .title {
+    .name {
       @apply underline;
     }
   }
+}
+
+.title {
+  @apply mb-3 text-2xl font-bold;
 }
 
 .image {
   @apply mb-3;
 }
 
-.title {
+.name {
   @include trackTitle;
   @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }
 
-.featuring {
+.description {
   @include featuring;
   @apply overflow-hidden text-ellipsis whitespace-nowrap;
 }
