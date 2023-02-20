@@ -1,4 +1,5 @@
 import type { Track } from '@prisma/client'
+import arrayShuffle from 'array-shuffle'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
@@ -50,16 +51,8 @@ export const usePlayer = create<IPlayer>()(
         const { shuffle } = get()
         if (!shuffle) {
           const { queueList } = get()
-          const newQueue = [...queueList]
-          for (let index = newQueue.length - 1; index > 0; index--) {
-            const newIndex = Math.floor(Math.random() * (index + 1))
-            ;[newQueue[index], newQueue[newIndex]] = [
-              newQueue[newIndex],
-              newQueue[index]
-            ]
-          }
-          set({ shuffleList: newQueue })
-        } else {
+          const shuffled = arrayShuffle(queueList)
+          set({ shuffleList: shuffled })
         }
         return { shuffle: !shuffle }
       }),
@@ -145,13 +138,6 @@ export const usePlayer = create<IPlayer>()(
         })
       }
     },
-    clearQueue: () => {
-      const { shuffle } = get()
-      if (shuffle) {
-        set({ shuffleList: [] })
-      } else {
-        set({ queueList: [] })
-      }
-    }
+    clearQueue: () => set({ queueList: [], shuffleList: [] })
   }))
 )

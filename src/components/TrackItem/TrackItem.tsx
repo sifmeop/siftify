@@ -65,8 +65,7 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
     <Dropdown menu={{ items }} trigger={['contextMenu']}>
       <div
         className={clsx(styles.track, {
-          [styles.currentTrack as string]:
-            !currentTrack?.queryId && currentTrack?.id === track.id
+          [styles.currentTrack as string]: currentTrack?.id === track.id
         })}>
         <div>
           <div className={styles.trackIndex}>

@@ -1,6 +1,8 @@
+import { api } from '@/utils/api'
 import CoverPlaylist from 'assets/images/cover-playlist.jpg'
 import clsx from 'clsx'
 import type { NextPage } from 'next'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useState } from 'react'
 import styles from './CreatePlaylist.module.scss'
@@ -12,6 +14,22 @@ interface ICreate {
 
 const CreatePlaylist: NextPage = () => {
   const [create, setCreate] = useState<ICreate>({ name: '', description: '' })
+  const { data: sessionData } = useSession()
+  const userId = String(sessionData?.user?.id)
+
+  const { refetch } = api.playlists.createPlaylist.useQuery(
+    {
+      userId,
+      name: create.name,
+      description: create.description
+    },
+    { enabled: false }
+  )
+
+  const createPlaylist = async () => {
+    const createdPlaylist = await refetch()
+    console.log(createdPlaylist.data)
+  }
 
   return (
     <div className={styles.createPlaylist}>
@@ -43,7 +61,9 @@ const CreatePlaylist: NextPage = () => {
           />
         </div>
       </div>
-      <button className={styles.create}>Создать</button>
+      <button onClick={createPlaylist} className={styles.create}>
+        Создать
+      </button>
     </div>
   )
 }

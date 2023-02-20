@@ -67,7 +67,7 @@ const QueueTrackItem: NextPage<IProps> = ({ track, index }) => {
     <Dropdown menu={{ items }} trigger={['contextMenu']}>
       <div
         className={clsx(styles.track, {
-          [styles.currentTrack as string]: checkCurrentTrack
+          [styles.currentTrack as string]: currentTrack?.id === track.id
         })}>
         <div>
           <div className={clsx(styles.trackIndex, 'text-center')}>

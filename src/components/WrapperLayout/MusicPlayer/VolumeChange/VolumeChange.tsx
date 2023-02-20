@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { usePlayer } from '@/stores/usePlayer'
 import { Tooltip } from 'antd'
@@ -13,7 +13,7 @@ const VolumeChange: NextPage = () => {
   const volume = usePlayer((state) => state.volume)
   const setVolume = usePlayer((state) => state.setVolume)
   const audio = usePlayer((state) => state.audio)
-  const [prevStateVolume, setPrevStateVolume] = useState<number>(volume)
+  const prevStateVolume = useRef(volume)
 
   useEffect(() => {
     const volumeFromLocalStorage = localStorage.getItem('volume')
@@ -38,7 +38,7 @@ const VolumeChange: NextPage = () => {
       return (
         <VolumeNone
           className='player-button'
-          onClick={() => setVolume(prevStateVolume)}
+          onClick={() => setVolume(prevStateVolume.current)}
         />
       )
     } else if (volume > 30 && volume <= 70) {
@@ -59,12 +59,12 @@ const VolumeChange: NextPage = () => {
     }
   }
 
-  const handlePrevSaveVolume = () => {
+  const handlePrevSaveVolume = (): void => {
     setVolume(0)
-    setPrevStateVolume(volume)
+    prevStateVolume.current = volume
   }
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setVolume(Number(e.target.value))
     localStorage.setItem('volume', e.target.value)
   }
