@@ -38,7 +38,7 @@ const LikedTracks: NextPage = () => {
           ))}
         </>
       ) : (
-        <div>рега нужна</div>
+        <h1 className='py-5 text-center'>Нужна регистрация</h1>
       )}
     </>
   )

@@ -1,9 +1,9 @@
 .list:not(:last-child) {
-  @apply mb-3;
+  @apply mb-2;
 }
 
 .link {
-  @apply p-2 text-base font-normal;
+  @apply p-2 text-base font-normal line-clamp-2;
 }
 
 .active {

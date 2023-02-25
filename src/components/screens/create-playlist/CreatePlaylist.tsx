@@ -36,42 +36,51 @@ const CreatePlaylist: NextPage = () => {
     } else {
       void message.error('Не удалось создать плейлист')
     }
+    setCreate({ name: '', description: '' })
   }
 
   return (
-    <div className={styles.createPlaylist}>
-      <h1 className={styles.title}>Создать плейлист</h1>
-      <div className='mb-5 flex gap-4'>
-        <Image
-          width={200}
-          className='rounded-lg'
-          height={200}
-          src={CoverPlaylist}
-          alt='Обложка для плейлиста'
-          placeholder='blur'
-        />
-        <div className='flex w-full flex-col gap-4'>
-          <input
-            type='text'
-            className={styles.input}
-            placeholder='Название...'
-            value={create.name}
-            onChange={(e) => setCreate({ ...create, name: e.target.value })}
-          />
-          <textarea
-            className={clsx(styles.input, 'h-full resize-none')}
-            placeholder='Описание...'
-            value={create.description}
-            onChange={(e) =>
-              setCreate({ ...create, description: e.target.value })
-            }
-          />
+    <>
+      {sessionData?.user ? (
+        <div className={styles.createPlaylist}>
+          <h1 className={styles.title}>Создать плейлист</h1>
+          <div className='mb-5 flex gap-4'>
+            <Image
+              width={200}
+              className='rounded-lg'
+              height={200}
+              src={CoverPlaylist}
+              alt='Обложка для плейлиста'
+              placeholder='blur'
+            />
+            <div className='flex w-full flex-col gap-4'>
+              <input
+                type='text'
+                className={styles.input}
+                placeholder='Название...'
+                value={create.name}
+                onChange={(e) => setCreate({ ...create, name: e.target.value })}
+              />
+              <textarea
+                className={clsx(styles.input, 'h-full resize-none')}
+                placeholder='Описание...'
+                value={create.description}
+                onChange={(e) =>
+                  setCreate({ ...create, description: e.target.value })
+                }
+              />
+            </div>
+          </div>
+          <button
+            onClick={() => void createPlaylist()}
+            className={styles.create}>
+            Создать
+          </button>
         </div>
-      </div>
-      <button onClick={() => void createPlaylist()} className={styles.create}>
-        Создать
-      </button>
-    </div>
+      ) : (
+        <h1 className='py-5 text-center'>Нужна регистрация</h1>
+      )}
+    </>
   )
 }
 

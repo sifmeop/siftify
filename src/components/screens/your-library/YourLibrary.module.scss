@@ -2,7 +2,7 @@
 
 .playlists {
   @apply flex flex-wrap gap-8;
-  @media (max-width: 448px) {
+  @media (max-width: 768px) {
     @apply justify-center;
   }
 }

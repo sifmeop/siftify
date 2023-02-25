@@ -36,8 +36,13 @@ const ArtistCard: NextPage<IProps> = ({
       />
       <div className={styles.artistInfo}>
         <h2 className={styles.type}>{type}</h2>
-        <h1 className={styles.title}>{title}</h1>
-        <h3 className={styles.info}>{info}</h3>
+        <h1
+          className={clsx(styles.title, {
+            ['mb-10']: info
+          })}>
+          {title}
+        </h1>
+        {info && <h3 className={styles.info}>{info}</h3>}
       </div>
     </div>
   )

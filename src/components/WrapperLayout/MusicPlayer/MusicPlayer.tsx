@@ -41,6 +41,12 @@ const MusicPlayer: NextPage = () => {
     }
   }, [audio, nextTrack, queueList.length, togglePlay])
 
+  const handleShuffle = useCallback(() => {
+    if (queueList.length > 0) {
+      setShuffle()
+    }
+  }, [queueList.length, setShuffle])
+
   useEffect(() => {
     audio?.addEventListener('ended', () => {
       if (queueList.length === 0) {
@@ -80,7 +86,7 @@ const MusicPlayer: NextPage = () => {
               <TbArrowsShuffle2
                 size='2.5rem'
                 className='player-button'
-                onClick={setShuffle}
+                onClick={handleShuffle}
                 color={shuffle ? '#47b5ff' : '#8a8f96'}
               />
             </div>

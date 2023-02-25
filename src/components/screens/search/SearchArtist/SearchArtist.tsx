@@ -10,7 +10,7 @@ interface IProps {
 
 const SearchArtist: NextPage<IProps> = ({ artist }) => {
   return (
-    <div className={styles.artist}>
+    <Link href={`/artist/${artist.id}`} className={styles.artist}>
       <Image
         className='rounded-full'
         width={70}
@@ -19,10 +19,8 @@ const SearchArtist: NextPage<IProps> = ({ artist }) => {
         alt={artist.name}
         priority
       />
-      <h1 className={styles.name}>
-        <Link href={`/artist/${artist.id}`}>{artist.name}</Link>
-      </h1>
-    </div>
+      <h1 className={styles.name}>{artist.name}</h1>
+    </Link>
   )
 }
 

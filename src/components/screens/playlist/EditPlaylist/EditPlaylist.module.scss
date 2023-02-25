@@ -1,0 +1,24 @@
+.input {
+  @apply w-full rounded-lg border border-[#d9d9d9] py-2 px-4 text-lg font-normal shadow-md;
+  color: rgba(0, 0, 0, 0.88);
+  transition: all 0.5s cubic-bezier(0.14, 0.65, 0.15, 1);
+  border-inline-end-width: 2px;
+  &:hover {
+    @apply border border-primary-blue;
+  }
+  &:focus {
+    @apply border border-primary-blue outline-none;
+    box-shadow: 0 0 0 4px rgb(5 145 255 / 10%);
+  }
+}
+
+.create {
+  @apply w-full rounded-lg bg-primary-blue px-4 py-2 text-white shadow-md;
+  transition: background-color 1s cubic-bezier(0.14, 0.65, 0.15, 1);
+  &:hover {
+    background-color: #67c1fd;
+  }
+  &:active {
+    @apply bg-primary-blue-dark;
+  }
+}

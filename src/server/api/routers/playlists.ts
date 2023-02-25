@@ -37,5 +37,20 @@ export const playlistsRouter = createTRPCRouter({
           id: input.id
         }
       })
+    }),
+  updatePlaylist: publicProcedure
+    .input(
+      z.object({ id: z.string(), name: z.string(), description: z.string() })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.createPlaylist.update({
+        where: {
+          id: input.id
+        },
+        data: {
+          name: input.name,
+          description: input.description
+        }
+      })
     })
 })

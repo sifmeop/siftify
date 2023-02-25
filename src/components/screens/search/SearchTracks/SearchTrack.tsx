@@ -10,7 +10,7 @@ interface IProps {
 
 const SearchTrack: NextPage<IProps> = ({ track }) => {
   return (
-    <div className={styles.track}>
+    <Link href={`/track/${track.id}`} className={styles.track}>
       <Image
         width={70}
         height={70}
@@ -19,12 +19,10 @@ const SearchTrack: NextPage<IProps> = ({ track }) => {
         priority
       />
       <div>
-        <h1 className={styles.title}>
-          <Link href={`/track/${track.id}`}>{track.title}</Link>
-        </h1>
+        <h1 className={styles.title}>{track.title}</h1>
         <h2 className={styles.featuring}>{track.featuring.join(', ')}</h2>
       </div>
-    </div>
+    </Link>
   )
 }
 

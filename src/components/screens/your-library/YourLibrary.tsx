@@ -47,7 +47,7 @@ const YourLibrary: NextPage = () => {
           </div>
         </>
       ) : (
-        <h1>Список плейлистов пуст</h1>
+        <h1 className='py-5 text-center'>Нужна регистрация</h1>
       )}
     </>
   )

@@ -48,7 +48,8 @@ export const usePlayer = create<IPlayer>()(
     shuffle: false,
     setShuffle: () =>
       set(() => {
-        const { shuffle } = get()
+        const { shuffle, queueList } = get()
+        if (queueList.length === 0) return { shuffle: shuffle }
         if (!shuffle) {
           const { queueList } = get()
           const shuffled = arrayShuffle(queueList)

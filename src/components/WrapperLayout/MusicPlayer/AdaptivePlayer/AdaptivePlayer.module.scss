@@ -1,6 +1,11 @@
 .player {
-  @apply fixed inset-0 h-screen w-screen bg-primary-gray p-5;
+  @apply fixed inset-0 mb-3 h-full w-full overflow-y-auto bg-primary-gray p-5;
   z-index: 100;
+}
+
+.inner {
+  @apply mx-auto rounded-lg bg-white p-5 shadow-lg;
+  max-width: 450px;
 }
 
 .closeWrapper {
@@ -17,7 +22,6 @@
 
 .image {
   @apply mx-auto mb-5 w-full;
-  max-width: 21.875rem;
 }
 
 .title {
