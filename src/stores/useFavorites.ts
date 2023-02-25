@@ -17,7 +17,7 @@ export const useFavorites = create<IFavorites>()(
       set((state) => ({ favorites: [...state.favorites, favorite] })),
     removeFavorite: (favorite) =>
       set((state) => ({
-        favorites: state.favorites.filter((f) => f.id !== favorite.id)
+        favorites: state.favorites.filter((fav) => fav.id !== favorite.id)
       }))
   }))
 )

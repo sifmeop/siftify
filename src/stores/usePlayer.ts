@@ -58,14 +58,15 @@ export const usePlayer = create<IPlayer>()(
       }),
     addToQueue: (track: Track) => {
       const queryId: string = Date.now().toString()
-      const newTrack = {
+      const newTrack: Track = {
         id: track.id,
         title: track.title,
         artistId: track.artistId,
         featuring: track.featuring,
         image: track.image,
         audio: track.audio,
-        queryId
+        queryId,
+        createPlaylistId: null
       }
       set((state) => ({
         queueList: [...state.queueList, newTrack],

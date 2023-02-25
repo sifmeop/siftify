@@ -18,7 +18,7 @@ const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
 
   return (
     <div className={styles.track}>
-      <div className='flex items-center gap-3'>
+      <div className='mb-3 flex items-center gap-3'>
         <Image
           className={styles.image}
           width={150}

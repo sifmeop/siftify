@@ -10,9 +10,9 @@
 }
 
 .title {
-  @apply hover:underline;
+  @apply line-clamp-2 hover:underline;
 }
 
 .featuring {
-  @apply text-base font-medium text-primary-light;
+  @apply text-base font-medium text-primary-light line-clamp-2;
 }

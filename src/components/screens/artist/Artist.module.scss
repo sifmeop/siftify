@@ -12,7 +12,7 @@
 }
 
 .tracks {
-  @apply flex justify-center gap-8;
+  @apply flex flex-wrap justify-center gap-8;
 }
 
 .track {
@@ -33,10 +33,22 @@
 
 .title {
   @include trackTitle;
-  @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  @apply line-clamp-1;
 }
 
 .featuring {
   @include featuring;
-  @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  @apply line-clamp-1;
+}
+
+@media (max-width: 448px) {
+  .tracks {
+    @apply gap-4;
+  }
+  .track {
+    @apply w-full text-center;
+    > a img {
+      @apply mx-auto;
+    }
+  }
 }

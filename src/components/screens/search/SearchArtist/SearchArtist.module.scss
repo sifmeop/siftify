@@ -10,5 +10,5 @@
 }
 
 .name {
-  @apply hover:underline;
+  @apply line-clamp-2 hover:underline;
 }

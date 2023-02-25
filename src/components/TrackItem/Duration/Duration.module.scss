@@ -1,3 +1,6 @@
 .duration {
   @apply text-center text-base text-primary;
+  @media (max-width: 768px) {
+    @apply text-sm;
+  }
 }

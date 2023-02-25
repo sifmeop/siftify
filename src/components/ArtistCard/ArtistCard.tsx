@@ -10,7 +10,7 @@ interface IProps {
   name: string
   type?: 'СИНГЛ' | 'ПЛЕЙЛИСТ' | JSX.Element
   title?: string
-  info: string | JSX.Element | undefined
+  info: string | JSX.Element | undefined | null
 }
 
 const ArtistCard: NextPage<IProps> = ({

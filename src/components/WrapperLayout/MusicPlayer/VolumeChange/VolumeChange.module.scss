@@ -41,4 +41,7 @@
     width: 0.625rem;
     border-radius: 1.875rem;
   }
+  @media (max-width: 1024px) {
+    width: 7rem;
+  }
 }

@@ -6,13 +6,18 @@
   }
 }
 
-.image {
-  @apply mb-3;
-}
-
 .title {
-  @apply text-3xl font-bold hover:underline;
+  @apply text-3xl font-bold line-clamp-1 hover:underline;
   &:hover {
     @apply text-primary;
+  }
+}
+
+@media (max-width: 768px) {
+  .image {
+    max-width: 6.25rem;
+  }
+  .title {
+    @apply text-base;
   }
 }

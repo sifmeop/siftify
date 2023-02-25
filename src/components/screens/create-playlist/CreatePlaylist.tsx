@@ -1,4 +1,5 @@
 import { api } from '@/utils/api'
+import { message } from 'antd'
 import CoverPlaylist from 'assets/images/cover-playlist.jpg'
 import clsx from 'clsx'
 import type { NextPage } from 'next'
@@ -28,7 +29,13 @@ const CreatePlaylist: NextPage = () => {
 
   const createPlaylist = async (): Promise<void> => {
     const createdPlaylist = await refetch()
-    console.log(createdPlaylist.data)
+    if (createdPlaylist.data) {
+      void message.success(
+        `Плейлист: ${createdPlaylist.data.name}, успешно создан`
+      )
+    } else {
+      void message.error('Не удалось создать плейлист')
+    }
   }
 
   return (
@@ -61,7 +68,7 @@ const CreatePlaylist: NextPage = () => {
           />
         </div>
       </div>
-      <button onClick={createPlaylist} className={styles.create}>
+      <button onClick={() => void createPlaylist()} className={styles.create}>
         Создать
       </button>
     </div>

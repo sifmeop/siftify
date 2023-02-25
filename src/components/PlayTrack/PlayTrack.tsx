@@ -11,7 +11,7 @@ import type { NextPage } from 'next'
 import styles from './PlayTrack.module.scss'
 
 interface IProps {
-  isCurrentPath: boolean
+  isCurrentPath: boolean | undefined
   className?: string
   track: Track
   size: 'small' | 'big'

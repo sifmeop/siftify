@@ -1,4 +1,4 @@
-import type { IPlaylistLink } from '@/types/playlistLink.type'
+import type { CreatePlaylist } from '@prisma/client'
 import { clsx } from 'clsx'
 import { type NextPage } from 'next'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import styles from './PlaylistItem.module.scss'
 
 interface IProps {
-  item: IPlaylistLink
+  item: CreatePlaylist
 }
 
 const PlaylistItem: NextPage<IProps> = ({ item }) => {
@@ -15,9 +15,9 @@ const PlaylistItem: NextPage<IProps> = ({ item }) => {
   return (
     <li className={styles.list}>
       <Link
-        href={item.path}
+        href={`/playlist/${item.id}`}
         className={clsx(styles.link, {
-          [styles.active as string]: router.asPath.split('?')[0] === item.path
+          [styles.active as string]: router.query.id === item.id
         })}>
         {item.name}
       </Link>

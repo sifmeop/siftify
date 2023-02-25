@@ -1,7 +1,10 @@
 @import 'styles/mixins.scss';
 
 .playlists {
-  @apply flex gap-8;
+  @apply flex flex-wrap gap-8;
+  @media (max-width: 448px) {
+    @apply justify-center;
+  }
 }
 
 .playlist {
@@ -25,10 +28,10 @@
 
 .name {
   @include trackTitle;
-  @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  @apply line-clamp-1;
 }
 
 .description {
   @include featuring;
-  @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  @apply line-clamp-1;
 }

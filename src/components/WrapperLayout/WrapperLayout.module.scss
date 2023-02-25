@@ -2,7 +2,7 @@
 
 .wrapper {
   @apply ml-header-width flex min-h-full flex-col;
-  /* @media (max-width: 768px) { */
-  /* margin-left: 0 !important; */
-  /* } */
+  @media (max-width: 768px) {
+    margin-left: 0 !important;
+  }
 }

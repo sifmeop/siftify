@@ -34,11 +34,11 @@
 }
 
 .title {
-  @apply inline-block text-xl text-primary hover:underline;
+  @apply inline-block text-xl text-primary line-clamp-1 hover:underline;
 }
 
 .featuring {
-  @apply text-base font-medium text-primary-light;
+  @apply text-base font-medium text-primary-light line-clamp-1;
 }
 
 .equalizer {
@@ -53,5 +53,14 @@
   @apply bg-primary-blue-light;
   &:hover {
     @apply bg-primary-blue-light;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    @apply text-base;
+  }
+  .featuring {
+    @apply text-sm;
   }
 }

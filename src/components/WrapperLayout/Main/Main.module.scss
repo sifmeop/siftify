@@ -1,3 +1,6 @@
 .main {
-  @apply mb-[6.25rem] p-[1.5625rem];
+  @apply p-[1.5625rem];
+  @media (max-width: 768px) {
+    @apply p-2;
+  }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import Favorite from '@/components/Favorite/Favorite'
 import { usePlayer } from '@/stores/usePlayer'
@@ -10,7 +10,9 @@ import NextTrack from 'assets/icons/skip-forward.svg'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MdOutlineKeyboardArrowUp } from 'react-icons/md'
 import { TbArrowsShuffle2 } from 'react-icons/tb'
+import AdaptivePlayer from './AdaptivePlayer/AdaptivePlayer'
 import styles from './MusicPlayer.module.scss'
 import PlayTrack from './PlayTrack/PlayTrack'
 import ProgressBar from './ProgressBar/ProgressBar'
@@ -19,6 +21,8 @@ import RepeatTrack from './RepeatTrack/RepeatTrack'
 import VolumeChange from './VolumeChange/VolumeChange'
 
 const MusicPlayer: NextPage = () => {
+  const [open, setOpen] = useState<boolean>(false)
+
   const audio = usePlayer((state) => state.audio)
   const currentTrack = usePlayer((state) => state.currentTrack)
   const queueList = usePlayer((state) => state.queueList)
@@ -72,22 +76,53 @@ const MusicPlayer: NextPage = () => {
             </div>
           </div>
           <div className={styles.control}>
-            <TbArrowsShuffle2
-              size='2.5rem'
-              className='player-button'
-              onClick={setShuffle}
-              color={shuffle ? '#47b5ff' : '#8a8f96'}
-            />
-            <PreviousTrack className='player-button' onClick={previousTrack} />
+            <div className={styles.icon}>
+              <TbArrowsShuffle2
+                size='2.5rem'
+                className='player-button'
+                onClick={setShuffle}
+                color={shuffle ? '#47b5ff' : '#8a8f96'}
+              />
+            </div>
+            <div className={styles.icon}>
+              <PreviousTrack
+                className='player-button'
+                onClick={previousTrack}
+              />
+            </div>
             <PlayTrack />
-            <NextTrack className='player-button' onClick={handleNextTrack} />
-            <RepeatTrack />
+            <div className={styles.icon}>
+              <NextTrack className='player-button' onClick={handleNextTrack} />
+            </div>
+            <div className={styles.icon}>
+              <RepeatTrack />
+            </div>
           </div>
           <div className={styles.volume}>
             <Favorite track={currentTrack} />
-            <Add className={styles.iconStyles} />
-            <QueueList />
-            <VolumeChange />
+            <div className={styles.icon}>
+              <Add className={styles.iconStyles} />
+            </div>
+            <div className={styles.icon}>
+              <QueueList />
+            </div>
+            <div className={styles.icon}>
+              <VolumeChange />
+            </div>
+          </div>
+          <div className={styles.adaptivePlayer}>
+            <MdOutlineKeyboardArrowUp
+              size='2.5rem'
+              color='#4A4B52'
+              onClick={() => setOpen(true)}
+            />
+            {open && (
+              <AdaptivePlayer
+                open={open}
+                setOpen={setOpen}
+                handleNextTrack={handleNextTrack}
+              />
+            )}
           </div>
         </div>
       </div>

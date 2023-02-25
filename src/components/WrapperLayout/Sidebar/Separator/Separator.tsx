@@ -1,4 +1,4 @@
-import { type NextPage } from 'next'
+import type { NextPage } from 'next'
 import styles from './Separator.module.scss'
 
 interface IProps {

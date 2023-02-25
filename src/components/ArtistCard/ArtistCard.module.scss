@@ -1,10 +1,9 @@
 .artist {
-  @apply mb-3 flex items-end gap-5;
+  @apply mb-5 flex items-end gap-5;
 }
 
 .artistInfo {
   @apply flex flex-col;
-  margin-left: 3.125rem;
 }
 
 .type {
@@ -13,11 +12,27 @@
 }
 
 .title {
-  font-size: 4rem;
-  line-height: 4.875rem;
-  margin-bottom: 40px;
+  @apply mb-10 text-6xl;
+  @media (max-width: 1024px) {
+    @apply text-3xl;
+  }
 }
 
 .info {
   @apply text-2xl font-medium;
+}
+
+@media (max-width: 768px) {
+  .artist > img {
+    max-width: 6.25rem;
+  }
+  .type {
+    @apply mb-2 text-xs;
+  }
+  .title {
+    @apply mb-2 text-xl;
+  }
+  .info {
+    @apply text-base;
+  }
 }

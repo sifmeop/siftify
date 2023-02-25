@@ -7,7 +7,7 @@ const GoBack: NextPage = () => {
   const router = useRouter()
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <ArrowLeft className={styles.goBack} onClick={() => router.back()} />
     </div>
   )

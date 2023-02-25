@@ -8,11 +8,23 @@
 
 .artistInfo {
   @apply mb-3 flex items-end gap-5;
+  > img {
+    max-width: 100px;
+  }
 }
 
 .name {
   @apply text-2xl font-bold;
   &:hover {
     @apply underline;
+  }
+}
+
+@media (max-width: 768px) {
+  .artist {
+    @apply p-2;
+  }
+  .name {
+    @apply text-base;
   }
 }

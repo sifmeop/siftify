@@ -1,5 +1,8 @@
-import type { IPlaylistLink } from '@/types/playlistLink.type'
-import { type NextPage } from 'next'
+import { useBurgerMenu } from '@/stores/useBurgerMenu'
+import clsx from 'clsx'
+import type { NextPage } from 'next'
+import { useSession } from 'next-auth/react'
+import BurgerMenu from '../Header/BurgerMenu/BurgerMenu'
 import Logo from './Logo/Logo'
 import MenuList from './MenuList/MenuList'
 import PlaylistList from './PlaylistList/PlaylistList'
@@ -7,23 +10,26 @@ import Separator from './Separator/Separator'
 import styles from './Sidebar.module.scss'
 
 const Sidebar: NextPage = () => {
-  // const playlistLinks: IPlaylistLink[] = [
-  //   { name: 'Мой топ 2022', path: '/playlist/asd1' },
-  //   { name: 'Мой топ 2021', path: '/playlist/asd2' },
-  //   { name: 'Радар новинок', path: '/playlist/asd3' },
-  //   { name: 'sad songs', path: '/playlist/asd4' },
-  //   { name: 'Ambient music', path: '/playlist/asd5' }
-  // ]
-
-  const playlistLinks: IPlaylistLink[] = []
+  const isOpen = useBurgerMenu((state) => state.isOpen)
+  const { data: sessionData } = useSession()
 
   return (
-    <div className={styles.sidebar}>
-      <Logo />
+    <div
+      className={clsx(styles.sidebar, {
+        [styles.active as string]: isOpen
+      })}>
+      <div className='flex items-center justify-between'>
+        <Logo />
+        <BurgerMenu />
+      </div>
       <Separator title='Меню' />
       <MenuList />
-      <Separator title='Плейлисты' />
-      <PlaylistList list={playlistLinks} />
+      {sessionData && (
+        <>
+          <Separator title='Плейлисты' />
+          <PlaylistList />
+        </>
+      )}
     </div>
   )
 }
