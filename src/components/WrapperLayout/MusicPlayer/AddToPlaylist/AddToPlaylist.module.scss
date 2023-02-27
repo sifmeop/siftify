@@ -1,0 +1,7 @@
+.add {
+  cursor: pointer;
+  & > path {
+    stroke: #8a8f96;
+    stroke-width: 2.5;
+  }
+}

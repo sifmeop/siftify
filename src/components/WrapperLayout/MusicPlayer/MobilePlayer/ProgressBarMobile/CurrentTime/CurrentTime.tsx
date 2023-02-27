@@ -6,14 +6,16 @@ import type { NextPage } from 'next'
 
 const CurrentTime: NextPage = () => {
   const audio = usePlayer((state) => state.audio)
-  const [currentTime, setCurrentTime] = useState(audio?.currentTime)
+  const [currentTime, setCurrentTime] = useState<number | undefined>(
+    audio?.currentTime
+  )
 
   useEffect(() => {
-    const handleCurrentTime = () => {
-      setCurrentTime(audio?.currentTime)
+    const handleCurrentTime = (e: Event) => {
+      setCurrentTime((e.target as HTMLAudioElement).currentTime)
     }
-    audio?.addEventListener('timeupdate', () => handleCurrentTime)
-    return () => audio?.addEventListener('timeupdate', handleCurrentTime)
+    audio?.addEventListener('timeupdate', handleCurrentTime)
+    return () => audio?.removeEventListener('timeupdate', handleCurrentTime)
   }, [audio])
 
   return (

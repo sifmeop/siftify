@@ -46,19 +46,28 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
       label: (
         <button onClick={handleRemoveFromQueue}>Удалить из очереди</button>
       ),
-      key: '2',
-      disabled: !queueList.includes(track)
-    },
-    { type: 'divider' },
-    {
-      label: <button>Добавить в избранное</button>,
-      key: '3'
-    },
-    {
-      label: <button>Убрать из избранных</button>,
-      key: '4',
-      disabled: true
+      key: '2'
     }
+    // { type: 'divider' },
+    // {
+    //   label: <button>Добавить в избранное</button>,
+    //   key: '3'
+    // },
+    // {
+    //   label: <button>Убрать из избранных</button>,
+    //   key: '4',
+    //   disabled: true
+    // },
+    // { type: 'divider' },
+    // {
+    //   label: <button>Добавить в плейлист</button>,
+    //   key: '5'
+    // },
+    // {
+    //   label: <button>Удалить из этого плейлиста</button>,
+    //   key: '6',
+    //   disabled: true
+    // }
   ]
 
   return (

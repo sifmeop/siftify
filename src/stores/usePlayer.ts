@@ -5,6 +5,7 @@ import { devtools } from 'zustand/middleware'
 
 interface IPlayer {
   playTrack: (track: Track) => void
+  closePlayer: () => void
   isPlaying: boolean
   togglePlay: (value: boolean) => void
   audio: HTMLAudioElement | null
@@ -37,6 +38,11 @@ export const usePlayer = create<IPlayer>()(
       }
       set({ isPlaying: true })
     },
+    closePlayer: () => {
+      const { audio } = get()
+      audio?.pause()
+      set({ isPlaying: false, currentTrack: null, audio: null })
+    },
     isPlaying: false,
     togglePlay: (value: boolean) => set({ isPlaying: value }),
     audio: null,
@@ -59,16 +65,7 @@ export const usePlayer = create<IPlayer>()(
       }),
     addToQueue: (track: Track) => {
       const queryId: string = Date.now().toString()
-      const newTrack: Track = {
-        id: track.id,
-        title: track.title,
-        artistId: track.artistId,
-        featuring: track.featuring,
-        image: track.image,
-        audio: track.audio,
-        queryId,
-        createPlaylistId: null
-      }
+      const newTrack: Track = { ...track, queryId }
       set((state) => ({
         queueList: [...state.queueList, newTrack],
         shuffleList: [...state.shuffleList, newTrack]

@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import ProgressBar from '../../ProgressBar/ProgressBar'
 import CurrentTime from './CurrentTime/CurrentTime'
 
-const ProgressBarAdaptive: NextPage = () => {
+const ProgressBarMobile: NextPage = () => {
   const currentTrack = usePlayer((state) => state.currentTrack)
   return (
     currentTrack && (
@@ -12,11 +12,13 @@ const ProgressBarAdaptive: NextPage = () => {
         <ProgressBar />
         <div className='flex items-center justify-between pt-2'>
           <CurrentTime />
-          <Duration track={currentTrack} />
+          <div className='text-right'>
+            <Duration track={currentTrack} />
+          </div>
         </div>
       </div>
     )
   )
 }
 
-export default ProgressBarAdaptive
+export default ProgressBarMobile

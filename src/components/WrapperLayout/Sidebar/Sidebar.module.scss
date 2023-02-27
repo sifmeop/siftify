@@ -1,5 +1,5 @@
 .sidebar {
-  @apply fixed top-0 left-0 z-50 flex h-full w-full max-w-header-width flex-col gap-[0.625rem] overflow-y-auto bg-primary-gray p-[1.875rem] pb-[6.7rem];
+  @apply fixed top-0 left-0 z-50 flex h-full w-full max-w-header-width flex-col gap-[0.625rem] overflow-y-auto bg-primary-gray p-[1.875rem];
   border-right: 1px solid #606065;
   transition: all 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
   @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-import type { CreatePlaylist } from '@prisma/client'
+import type { Playlist } from '@prisma/client'
 import { clsx } from 'clsx'
 import { type NextPage } from 'next'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import styles from './PlaylistItem.module.scss'
 
 interface IProps {
-  item: CreatePlaylist
+  item: Playlist
 }
 
 const PlaylistItem: NextPage<IProps> = ({ item }) => {

@@ -6,6 +6,16 @@
   @apply mb-5 border-b-2 border-b-primary pb-1 text-2xl font-bold;
 }
 
+.form {
+  @apply mb-5 flex gap-4;
+  @media (max-width: 425px) {
+    @apply flex-col;
+    & > img {
+      @apply mx-auto;
+    }
+  }
+}
+
 .input {
   @apply w-full rounded-lg border border-[#d9d9d9] py-2 px-4 text-lg font-normal shadow-md;
   color: rgba(0, 0, 0, 0.88);

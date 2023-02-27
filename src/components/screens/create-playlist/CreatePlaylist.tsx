@@ -27,12 +27,18 @@ const CreatePlaylist: NextPage = () => {
     { enabled: false }
   )
 
+  const { refetch: refetchPlaylists } = api.playlists.getPlaylists.useQuery(
+    { userId },
+    { enabled: false }
+  )
+
   const createPlaylist = async (): Promise<void> => {
     const createdPlaylist = await refetch()
     if (createdPlaylist.data) {
       void message.success(
         `Плейлист: ${createdPlaylist.data.name}, успешно создан`
       )
+      await refetchPlaylists()
     } else {
       void message.error('Не удалось создать плейлист')
     }
@@ -44,7 +50,7 @@ const CreatePlaylist: NextPage = () => {
       {sessionData?.user ? (
         <div className={styles.createPlaylist}>
           <h1 className={styles.title}>Создать плейлист</h1>
-          <div className='mb-5 flex gap-4'>
+          <div className={styles.form}>
             <Image
               width={200}
               className='rounded-lg'

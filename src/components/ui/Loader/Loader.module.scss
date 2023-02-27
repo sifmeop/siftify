@@ -1,38 +1,27 @@
-.loader {
-  @apply relative mx-auto block h-12 w-12;
-  border-radius: 50%;
-  border: 3px solid #fff #fff transparent transparent;
-  animation: rotation 1s linear infinite;
-  &::after,
-  &::before {
-    content: '';
-    @apply absolute left-0 right-0 top-0 bottom-0 m-auto h-12 w-12;
-    border: 6px solid;
-    border-color: transparent transparent #0066ff #0066ff;
-    border-radius: 50%;
-    animation: rotationBack 0.5s linear infinite;
-    transform-origin: center center;
-  }
-  &::before {
-    @apply h-8 w-8;
-    border-color: #fff #fff transparent transparent;
-    animation: rotation 1.5s linear infinite;
-  }
+.ldsRing {
+  @apply relative mx-auto block h-20 w-20;
 }
-
-@keyframes rotation {
+.ldsRing div {
+  @apply absolute m-2 block h-16 w-16 rounded;
+  border: 8px solid #20a5ff;
+  border-radius: 50%;
+  animation: ldsRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #20a5ff transparent transparent transparent;
+}
+.ldsRing div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.ldsRing div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.ldsRing div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes ldsRing {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-@keyframes rotationBack {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
   }
 }

@@ -1,0 +1,23 @@
+.playlist {
+  @apply rounded-lg bg-primary-gray px-4 py-2 text-2xl font-medium hover:bg-primary-blue-light;
+  transition: all 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
+  &:not(:last-child) {
+    @apply mb-2;
+  }
+}
+
+.playlistDisable {
+  @apply bg-[#FF9F9F] hover:bg-[#E97777];
+}
+
+.name {
+  @apply flex items-center justify-between gap-2;
+}
+
+.icon {
+  @apply cursor-pointer rounded-sm;
+  transition: all 500ms cubic-bezier(0.14, 0.65, 0.15, 1);
+  &:hover {
+    @apply bg-gray-200;
+  }
+}

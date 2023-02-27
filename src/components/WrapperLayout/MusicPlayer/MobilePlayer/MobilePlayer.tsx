@@ -9,11 +9,12 @@ import Image from 'next/image'
 import { useEffect } from 'react'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { TbArrowsShuffle2 } from 'react-icons/tb'
+import AddToPlaylist from '../AddToPlaylist/AddToPlaylist'
 import QueueList from '../QueueList/QueueList'
 import RepeatTrack from '../RepeatTrack/RepeatTrack'
 import VolumeChange from '../VolumeChange/VolumeChange'
-import styles from './AdaptivePlayer.module.scss'
-import ProgressBarAdaptive from './ProgressBarAdaptive/ProgressBarAdaptive'
+import styles from './MobilePlayer.module.scss'
+import ProgressBarMobile from './ProgressBarMobile/ProgressBarMobile'
 
 interface IProps {
   open: boolean
@@ -21,11 +22,7 @@ interface IProps {
   handleNextTrack: () => void
 }
 
-const AdaptivePlayer: NextPage<IProps> = ({
-  open,
-  setOpen,
-  handleNextTrack
-}) => {
+const MobilePlayer: NextPage<IProps> = ({ open, setOpen, handleNextTrack }) => {
   const currentTrack = usePlayer((state) => state.currentTrack)
   const isCurrentPath = useIsCurrentTrack(currentTrack?.title)
   const shuffle = usePlayer((state) => state.shuffle)
@@ -63,7 +60,7 @@ const AdaptivePlayer: NextPage<IProps> = ({
               blurDataURL={`/${currentTrack.image}`}
               placeholder='blur'
             />
-            <div className='mb-5 flex justify-between'>
+            <div className='mb-5 flex justify-between gap-3'>
               <div>
                 <h1 className={styles.title}>{currentTrack.title}</h1>
                 <p className={styles.featuring}>
@@ -72,7 +69,7 @@ const AdaptivePlayer: NextPage<IProps> = ({
               </div>
               <Favorite track={currentTrack} />
             </div>
-            <ProgressBarAdaptive />
+            <ProgressBarMobile />
             <div className='mb-5 flex items-center justify-center gap-5'>
               <TbArrowsShuffle2
                 size='2.5rem'
@@ -92,9 +89,12 @@ const AdaptivePlayer: NextPage<IProps> = ({
               <NextTrack className='player-button' onClick={handleNextTrack} />
               <RepeatTrack />
             </div>
-            <div className='flex justify-between'>
+            <div className='flex items-center justify-between gap-2'>
               <VolumeChange />
-              <QueueList />
+              <div className='flex items-center gap-2'>
+                <AddToPlaylist />
+                <QueueList />
+              </div>
             </div>
           </div>
         </div>
@@ -103,4 +103,4 @@ const AdaptivePlayer: NextPage<IProps> = ({
   )
 }
 
-export default AdaptivePlayer
+export default MobilePlayer

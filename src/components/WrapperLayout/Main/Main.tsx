@@ -9,7 +9,7 @@ const Main: NextPage<PropsWithChildren> = ({ children }) => {
   return (
     <div
       className={clsx(styles.main, {
-        ['mb-[6.25rem]']: currentTrack
+        ['mb-[6.875rem]']: !!currentTrack
       })}>
       {children}
     </div>

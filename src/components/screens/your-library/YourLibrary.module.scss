@@ -28,7 +28,7 @@
 
 .name {
   @include trackTitle;
-  @apply line-clamp-1;
+  @apply text-xl line-clamp-1;
 }
 
 .description {
