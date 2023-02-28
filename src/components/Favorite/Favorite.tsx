@@ -1,5 +1,4 @@
 import { useFavoritesHook } from '@/hooks/useFavoritesHook'
-import { useIsCurrentTrack } from '@/hooks/useIsCurrentTrack'
 import type { Track } from '@prisma/client'
 import { Tooltip } from 'antd'
 import InFavorites from 'assets/icons/in-favorites.svg'
@@ -11,12 +10,10 @@ import styles from './Favorite.module.scss'
 
 interface IProps {
   track: Track
-  className?: string
 }
 
-const Favorite: NextPage<IProps> = ({ track, className }) => {
+const Favorite: NextPage<IProps> = ({ track }) => {
   const { isFav, addToFavorites, deleteFromFavorites } = useFavoritesHook(track)
-  const isCurrentTrack = useIsCurrentTrack(track.title)
 
   return (
     <>
@@ -24,18 +21,14 @@ const Favorite: NextPage<IProps> = ({ track, className }) => {
         <Tooltip title='Удалить с избранного'>
           <InFavorites
             onClick={deleteFromFavorites}
-            className={clsx(className, 'player-button', {
-              [styles.visibleIcon as string]: isCurrentTrack
-            })}
+            className={clsx(styles.icon, 'player-button')}
           />
         </Tooltip>
       ) : (
         <Tooltip title='Добавить в избранное'>
           <NotInFavorites
             onClick={addToFavorites}
-            className={clsx(className, 'player-button', {
-              [styles.visibleIcon as string]: isCurrentTrack
-            })}
+            className={clsx(styles.icon, 'player-button')}
           />
         </Tooltip>
       )}

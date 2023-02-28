@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { formatDuration } from '@/utils/formatDuration'
 import type { Track } from '@prisma/client'
 
 export const useDuration = (track: Track, type: 'short' | 'normal') => {
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
   const [duration, setDuration] = useState<string>('')
 
   useEffect(() => {
-    setAudio(new Audio(`/${track.audio}`))
-  }, [])
+    audioRef.current = new Audio(`/${track.audio}`)
+  }, [track.audio])
 
   useEffect(() => {
     const getInfo = () => {
-      setDuration(formatDuration(audio?.duration, type))
+      setDuration(formatDuration(audioRef.current?.duration, type))
     }
-    audio?.addEventListener('loadedmetadata', getInfo)
+    audioRef.current?.addEventListener('loadedmetadata', getInfo)
     return () => {
-      audio?.removeEventListener('loadedmetadata', getInfo)
+      audioRef.current?.removeEventListener('loadedmetadata', getInfo)
     }
-  }, [audio])
+  }, [type])
 
   return duration
 }

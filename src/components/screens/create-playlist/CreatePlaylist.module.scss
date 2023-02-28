@@ -39,4 +39,7 @@
   &:active {
     @apply bg-primary-blue-dark;
   }
+  &:disabled {
+    @apply cursor-not-allowed bg-[#d9d9d9];
+  }
 }

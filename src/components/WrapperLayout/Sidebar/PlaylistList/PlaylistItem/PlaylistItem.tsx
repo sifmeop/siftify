@@ -1,3 +1,4 @@
+import { useBurgerMenu } from '@/stores/useBurgerMenu'
 import type { Playlist } from '@prisma/client'
 import { clsx } from 'clsx'
 import { type NextPage } from 'next'
@@ -11,6 +12,7 @@ interface IProps {
 
 const PlaylistItem: NextPage<IProps> = ({ item }) => {
   const router = useRouter()
+  const setOpen = useBurgerMenu((state) => state.setOpen)
 
   return (
     <li className={styles.list}>
@@ -18,7 +20,8 @@ const PlaylistItem: NextPage<IProps> = ({ item }) => {
         href={`/playlist/${item.id}`}
         className={clsx(styles.link, {
           [styles.active as string]: router.query.id === item.id
-        })}>
+        })}
+        onClick={setOpen}>
         {item.name}
       </Link>
     </li>

@@ -1,4 +1,5 @@
 import ArrowDown from '@/assets/icons/arrow-down.svg'
+import LoaderAccount from '@/components/ui/Loaders/LoaderAccount/LoaderAccount'
 import { type NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
@@ -7,8 +8,12 @@ import styles from './Account.module.scss'
 import Dropdown from './Dropdown/Dropdown'
 
 const Account: NextPage = () => {
-  const { data: sessionData } = useSession()
+  const { data: sessionData, status } = useSession()
   const [open, setOpen] = useState<boolean>(false)
+
+  if (status === 'loading') {
+    return <LoaderAccount />
+  }
 
   return (
     <>

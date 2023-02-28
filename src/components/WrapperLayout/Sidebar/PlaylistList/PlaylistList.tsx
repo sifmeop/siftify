@@ -1,3 +1,4 @@
+import LoaderPlaylists from '@/components/ui/Loaders/LoaderPlaylists/LoaderPlaylists'
 import { api } from '@/utils/api'
 import { type NextPage } from 'next'
 import { useSession } from 'next-auth/react'
@@ -8,10 +9,14 @@ const PlaylistList: NextPage = () => {
   const { data: sessionData } = useSession()
   const userId = String(sessionData?.user?.id)
 
-  const { data: playlists } = api.playlists.getPlaylists.useQuery(
+  const { data: playlists, isLoading } = api.playlists.getPlaylists.useQuery(
     { userId },
     { enabled: !!sessionData }
   )
+
+  if (isLoading) {
+    return <LoaderPlaylists />
+  }
 
   return (
     <>

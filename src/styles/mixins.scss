@@ -7,6 +7,9 @@
 @mixin gridTable {
   @apply grid;
   grid-template-columns: [index] 3rem [title] 6fr [favorite] 3.125rem [duration] 4.375rem;
+  @media (max-width: 425px) {
+    grid-template-columns: [index] 2.5rem [title] 6fr [favorite] 2rem [duration] 3rem;
+  }
 }
 
 @mixin trackTitle {

@@ -17,6 +17,7 @@ const PopupTracks: NextPage<IProps> = ({ state, setState, artist, tracks }) => {
       title={<h2 className='text-xl font-bold'>Синглы артиста {artist}</h2>}
       open={state}
       onCancel={() => setState(false)}
+      destroyOnClose={true}
       width={800}
       footer={null}>
       <>

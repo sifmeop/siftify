@@ -14,28 +14,36 @@ const LikedTracks: NextPage = () => {
 
   return (
     <>
-      {sessionData ? (
+      {sessionData?.user ? (
         <>
-          <ArtistCard
-            size={300}
-            image={Favorites}
-            name=''
-            type='ПЛЕЙЛИСТ'
-            title='Любимые треки'
-            info={
-              <>
-                <span className={styles.info}>{sessionData.user?.name}</span>
-                {' ৹ '}
-                <span className={styles.tracksLength}>
-                  {favorites?.length} {checkTracksLength(favorites?.length)}
-                </span>
-              </>
-            }
-          />
-          <TableHeader />
-          {favorites?.map((track, index) => (
-            <LikedTracksItem key={track.id} track={track} index={index} />
-          ))}
+          {favorites.length > 0 ? (
+            <>
+              <ArtistCard
+                size={300}
+                image={Favorites}
+                name=''
+                type='ПЛЕЙЛИСТ'
+                title='Любимые треки'
+                info={
+                  <>
+                    <span className={styles.info}>
+                      {sessionData.user?.name}
+                    </span>
+                    {' ৹ '}
+                    <span className={styles.tracksLength}>
+                      {favorites?.length} {checkTracksLength(favorites?.length)}
+                    </span>
+                  </>
+                }
+              />
+              <TableHeader />
+              {favorites.map((track, index) => (
+                <LikedTracksItem key={track.id} track={track} index={index} />
+              ))}
+            </>
+          ) : (
+            <h1 className='text-center text-2xl'>Список любимых треков пуст</h1>
+          )}
         </>
       ) : (
         <h1 className='py-5 text-center'>Нужна регистрация</h1>

@@ -16,9 +16,6 @@
     .equalizer {
       display: none !important;
     }
-    .favorite {
-      @apply visible;
-    }
   }
   &:not(:last-child) {
     @apply mb-4;
@@ -43,10 +40,6 @@
 
 .equalizer {
   @apply mx-auto hidden cursor-pointer;
-}
-
-.favorite {
-  @apply invisible cursor-pointer;
 }
 
 .currentTrack {

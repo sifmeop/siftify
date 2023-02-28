@@ -73,8 +73,8 @@ export const usePlayer = create<IPlayer>()(
     },
     removeFromQueue: (id: string) => {
       set((state) => ({
-        queueList: state.queueList.filter((track) => track.queryId !== id),
-        shuffleList: state.queueList.filter((track) => track.queryId !== id)
+        queueList: state.queueList.filter((track) => track.id !== id),
+        shuffleList: state.queueList.filter((track) => track.id !== id)
       }))
     },
     nextTrack: () => {

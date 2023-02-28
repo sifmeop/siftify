@@ -79,7 +79,8 @@ const CreatePlaylist: NextPage = () => {
           </div>
           <button
             onClick={() => void createPlaylist()}
-            className={styles.create}>
+            className={styles.create}
+            disabled={!create.name.trim() || create.name.length < 3}>
             Создать
           </button>
         </div>

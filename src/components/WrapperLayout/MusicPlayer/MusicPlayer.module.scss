@@ -11,12 +11,12 @@
 }
 
 .controlPanel {
-  @apply grid;
+  @apply grid items-center;
   grid-template-columns: [info-start] 1fr [control-center] 1fr [volume-end] 1fr;
 }
 
 .infoArtist {
-  @apply flex items-center gap-4;
+  @apply flex w-full items-center gap-4;
 }
 
 .title {
@@ -57,20 +57,22 @@
   }
   .infoArtist .control,
   .volume {
-    @apply gap-2;
+    gap: 0.5rem;
   }
   .volume {
-    @apply pr-2;
+    padding-right: 0.5rem;
   }
 }
 
-.adaptivePlayer {
-  @apply hidden;
+.mobilePlayer {
+  display: none;
 }
 
 @media (max-width: 768px) {
   .controlPanel {
-    @apply flex items-center gap-3 pr-2;
+    // @apply flex gap-3 pr-2;
+    display: grid;
+    grid-template-columns: [info-start] 1fr [play] auto [fav] auto [mobile] auto;
   }
   .infoArtist {
     @apply mr-auto gap-2;
@@ -79,10 +81,10 @@
     @apply w-fit gap-0;
   }
   .icon {
-    @apply hidden;
+    display: none;
   }
-  .adaptivePlayer {
-    @apply block;
+  .mobilePlayer {
+    @apply mr-5 block;
   }
   .image {
     max-width: 75px;

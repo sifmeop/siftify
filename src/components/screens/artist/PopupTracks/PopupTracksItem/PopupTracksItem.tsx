@@ -1,6 +1,6 @@
 import Favorite from '@/components/Favorite/Favorite'
 import PlayTrack from '@/components/PlayTrack/PlayTrack'
-import QueueTrackItem from '@/components/TrackItem/QueueTrackItem'
+import TrackItem from '@/components/TrackItem/TrackItem'
 import { useIsCurrentTrack } from '@/hooks/useIsCurrentTrack'
 import type { Track } from '@prisma/client'
 import type { NextPage } from 'next'
@@ -41,7 +41,7 @@ const PopupTracksItem: NextPage<IProps> = ({ track, index }) => {
           </div>
         </div>
       </div>
-      <QueueTrackItem track={track} index={index} />
+      <TrackItem track={track} index={index} />
     </div>
   )
 }

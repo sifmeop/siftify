@@ -46,7 +46,7 @@ const YourLibrary: NextPage = () => {
               </div>
             </>
           ) : (
-            <h1>Список плейлистов пуст</h1>
+            <h1 className='text-center text-2xl'>Список плейлистов пуст</h1>
           )}
         </>
       ) : (

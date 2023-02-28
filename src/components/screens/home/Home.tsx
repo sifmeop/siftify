@@ -1,5 +1,5 @@
 import ArtistTrackList from '@/components/ArtistTrackList/ArtistTrackList'
-import Loader from '@/components/ui/Loader/Loader'
+import Loader from '@/components/ui/Loaders/Loader/Loader'
 import { api } from '@/utils/api'
 import type { NextPage } from 'next'
 import Image from 'next/image'

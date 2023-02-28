@@ -12,7 +12,7 @@ interface IProps {
 
 const MenuItem: NextPage<IProps> = ({ item }) => {
   const router = useRouter()
-  const setOpen = useBurgerMenu(state=>state.setOpen)
+  const setOpen = useBurgerMenu((state) => state.setOpen)
 
   return (
     <li className={styles.list}>
@@ -21,8 +21,7 @@ const MenuItem: NextPage<IProps> = ({ item }) => {
         className={clsx(styles.link, {
           [styles.active as string]: router.pathname === item.path
         })}
-        onClick={setOpen}
-        >
+        onClick={setOpen}>
         {<item.icon size='1.5625rem' />}
         {item.name}
       </Link>

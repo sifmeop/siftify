@@ -1,7 +1,6 @@
-import type { NextPage } from 'next'
 import ContentLoader from 'react-content-loader'
 
-const LoaderDuration: NextPage = () => (
+const LoaderDuration = () => (
   <ContentLoader
     speed={2}
     width={40}

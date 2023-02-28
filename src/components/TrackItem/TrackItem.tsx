@@ -1,7 +1,10 @@
-import { Dropdown, message } from 'antd'
+import { Dropdown } from 'antd'
 
+import { useFavoritesHook } from '@/hooks/useFavoritesHook'
 import { useIsCurrentTrack } from '@/hooks/useIsCurrentTrack'
+import { useQueue } from '@/hooks/useQueue'
 import { usePlayer } from '@/stores/usePlayer'
+import { usePlaylistStore } from '@/stores/usePlaylistStore'
 import type { Track } from '@prisma/client'
 import type { MenuProps } from 'antd'
 import clsx from 'clsx'
@@ -22,52 +25,51 @@ interface IProps {
 const TrackItem: NextPage<IProps> = ({ track, index }) => {
   const currentTrack = usePlayer((state) => state.currentTrack)
   const isPlaying = usePlayer((state) => state.isPlaying)
-  const queueList = usePlayer((state) => state.queueList)
-  const addToQueue = usePlayer((state) => state.addToQueue)
-  const removeFromQueue = usePlayer((state) => state.removeFromQueue)
   const isCurrentTrack = useIsCurrentTrack(track.title)
 
-  const handleAddToQueue = () => {
-    addToQueue(track)
-    void message.success(`Добавлен в очередь трек: ${track.title}`)
-  }
-
-  const handleRemoveFromQueue = () => {
-    removeFromQueue(track.id)
-    void message.success(`Удален из очереди трек: ${track.title}`)
-  }
+  const { isFav, addToFavorites, deleteFromFavorites } = useFavoritesHook(track)
+  const { isInQueue, addToQueue, removeFromQueue } = useQueue(track)
+  const setOpen = usePlaylistStore((state) => state.setOpen)
 
   const items: MenuProps['items'] = [
     {
-      label: <button onClick={handleAddToQueue}>Добавить в очередь</button>,
-      key: '1'
+      label: <button onClick={addToQueue}>Добавить в очередь</button>,
+      key: '1',
+      disabled: isInQueue
+    },
+    {
+      label: <button onClick={removeFromQueue}>Удалить из очереди</button>,
+      key: '2',
+      disabled: !isInQueue
+    },
+    { type: 'divider' },
+    {
+      label: (
+        <button onClick={() => void addToFavorites()}>
+          Добавить в любимые
+        </button>
+      ),
+      key: '3',
+      disabled: isFav
     },
     {
       label: (
-        <button onClick={handleRemoveFromQueue}>Удалить из очереди</button>
+        <button onClick={() => void deleteFromFavorites()}>
+          Убрать из избранных
+        </button>
       ),
-      key: '2'
+      key: '4',
+      disabled: !isFav
+    },
+    { type: 'divider' },
+    {
+      label: <button onClick={setOpen}>Добавить в плейлист</button>,
+      key: '5'
+    },
+    {
+      label: <button>Удалить из плейлиста</button>,
+      key: '6'
     }
-    // { type: 'divider' },
-    // {
-    //   label: <button>Добавить в избранное</button>,
-    //   key: '3'
-    // },
-    // {
-    //   label: <button>Убрать из избранных</button>,
-    //   key: '4',
-    //   disabled: true
-    // },
-    // { type: 'divider' },
-    // {
-    //   label: <button>Добавить в плейлист</button>,
-    //   key: '5'
-    // },
-    // {
-    //   label: <button>Удалить из этого плейлиста</button>,
-    //   key: '6',
-    //   disabled: true
-    // }
   ]
 
   return (
@@ -100,7 +102,7 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
           </h1>
           <p className={styles.featuring}>{track.featuring.join(', ')}</p>
         </div>
-        <Favorite track={track} className={styles.favorite} />
+        <Favorite track={track} />
         <Duration track={track} />
       </div>
     </Dropdown>

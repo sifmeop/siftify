@@ -75,7 +75,7 @@ const MusicPlayer: NextPage = () => {
     ) : (
       <div className={styles.player}>
         <IoClose
-          size='1rem'
+          size='1.5rem'
           className={styles.closePlayer}
           onClick={handleClosePlayer}
         />
@@ -136,7 +136,7 @@ const MusicPlayer: NextPage = () => {
               <VolumeChange />
             </div>
           </div>
-          <div className={styles.adaptivePlayer}>
+          <div className={styles.mobilePlayer}>
             <MdOutlineKeyboardArrowUp
               size='2.5rem'
               color='#4A4B52'

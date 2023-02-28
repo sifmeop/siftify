@@ -1,18 +1,18 @@
-import { usePlayer } from '@/stores/usePlayer'
+import { usePlaylistStore } from '@/stores/usePlaylistStore'
 import { api } from '@/utils/api'
 import { Modal } from 'antd'
 import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
-import { memo } from 'react'
-import AddToPlaylistItemModal from './AddToPlaylistItemModal/AddToPlaylistItemModal'
+import ModalPlaylistTrack from './ModalPlaylistTrack/ModalPlaylistTrack'
 
 interface IProps {
-  open: boolean
-  setOpen: (open: boolean) => void
+  trackId: string | undefined
+  title: string | undefined
 }
 
-const AddToPlaylistModal: NextPage<IProps> = ({ open, setOpen }) => {
-  const currentTrack = usePlayer((state) => state.currentTrack)
+const ModalPlaylist: NextPage<IProps> = ({ trackId, title }) => {
+  const isOpen = usePlaylistStore((state) => state.isOpen)
+  const setOpen = usePlaylistStore((state) => state.setOpen)
 
   const { data: sessionData } = useSession()
   const userId = String(sessionData?.user?.id)
@@ -26,20 +26,21 @@ const AddToPlaylistModal: NextPage<IProps> = ({ open, setOpen }) => {
     <Modal
       title={
         <>
-          Добавить трек в плейлист: <u>{String(currentTrack?.title)}</u>
+          Добавить трек в плейлист: <u>{title || ''}</u>
         </>
       }
       width={800}
-      open={open}
-      onCancel={() => setOpen(false)}
+      open={isOpen}
+      onCancel={setOpen}
+      destroyOnClose={true}
       footer={null}>
       {playlists && playlists.length > 0 ? (
         playlists.map((playlist, index) => (
-          <AddToPlaylistItemModal
+          <ModalPlaylistTrack
             key={playlist.id}
+            trackId={trackId}
             playlist={playlist}
             index={index}
-            setOpen={setOpen}
           />
         ))
       ) : (
@@ -49,4 +50,4 @@ const AddToPlaylistModal: NextPage<IProps> = ({ open, setOpen }) => {
   )
 }
 
-export default memo(AddToPlaylistModal)
+export default ModalPlaylist

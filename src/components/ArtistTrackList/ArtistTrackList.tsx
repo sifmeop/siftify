@@ -12,18 +12,16 @@ const ArtistTrackList: NextPage<IProps> = ({ artistId }) => {
   const { data: tracks } = api.tracks.getArtistTracks.useQuery({ artistId })
 
   return (
-    <div>
+    <>
       <TableHeader />
-      <div>
-        {tracks ? (
-          tracks.map((track, index) => (
-            <TrackItem key={track.id} track={track} index={index} />
-          ))
-        ) : (
-          <LoaderTrack />
-        )}
-      </div>
-    </div>
+      {tracks ? (
+        tracks.map((track, index) => (
+          <TrackItem key={track.id} track={track} index={index} />
+        ))
+      ) : (
+        <LoaderTrack />
+      )}
+    </>
   )
 }
 

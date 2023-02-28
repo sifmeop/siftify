@@ -1,15 +1,18 @@
+import ModalPlaylist from '@/components/ModalPlaylist/ModalPlaylist'
+import { usePlayer } from '@/stores/usePlayer'
+import { usePlaylistStore } from '@/stores/usePlaylistStore'
 import Add from 'assets/icons/add.svg'
 import type { NextPage } from 'next'
-import { useState } from 'react'
 import styles from './AddToPlaylist.module.scss'
-import AddToPlaylistModal from './AddToPlaylistModal/AddToPlaylistModal'
 
 const AddToPlaylist: NextPage = () => {
-  const [open, setOpen] = useState<boolean>(false)
+  const currentTrack = usePlayer((state) => state.currentTrack)
+  const setOpen = usePlaylistStore((state) => state.setOpen)
+
   return (
     <>
-      <Add className={styles.add} onClick={() => setOpen(true)} />
-      <AddToPlaylistModal open={open} setOpen={setOpen} />
+      <Add className={styles.add} onClick={setOpen} />
+      <ModalPlaylist trackId={currentTrack?.id} title={currentTrack?.title} />
     </>
   )
 }
