@@ -1,11 +1,13 @@
 {
   "name": "siftify",
-  "version": "0.8.5",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
     "dev": "next dev",
     "postinstall": "prisma generate",
+    "studio": "prisma studio",
+    "db": "prisma db push",
     "lint": "next lint",
     "start": "next start"
   },

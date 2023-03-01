@@ -1,5 +1,6 @@
-import { api } from '@/utils/api'
 import type { Playlist, Track } from '@prisma/client'
+
+import { api } from '@/utils/api'
 import { message } from 'antd'
 import { useSession } from 'next-auth/react'
 
@@ -25,7 +26,7 @@ export const usePlaylist = (
       { enabled: !playlist }
     )
 
-  const { data: playlists, refetch: playlistsPlaylists } =
+  const { data: playlists, refetch: refetchPlaylists } =
     api.playlists.getPlaylists.useQuery({ userId }, { enabled: !!sessionData })
 
   const handleAddToPlaylist = async (): Promise<void> => {
@@ -35,14 +36,14 @@ export const usePlaylist = (
     }
     await refetchAddTrackToPlaylist()
     void message.success('Трек добавлен в плейлист')
-    await playlistsPlaylists()
+    await refetchPlaylists()
   }
 
   const handleDeleteFromPlaylist = async (): Promise<void> => {
     const result = await refetchRemoveTrackFromPlaylist()
     if (result) {
       void message.success(`Трек удален из плейлиста: ${playlist.name}`)
-      await playlistsPlaylists()
+      await refetchPlaylists()
     } else {
       void message.error('Ошибка при удалении трека из плейлиста')
     }

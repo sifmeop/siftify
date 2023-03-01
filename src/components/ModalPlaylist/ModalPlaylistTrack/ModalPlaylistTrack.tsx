@@ -1,9 +1,10 @@
-import { usePlaylist } from '@/hooks/usePlaylist'
 import type { Playlist, Track } from '@prisma/client'
+import { MdAdd, MdClose } from 'react-icons/md'
+
+import { usePlaylist } from '@/hooks/usePlaylist'
 import { Tooltip } from 'antd'
 import clsx from 'clsx'
 import type { NextPage } from 'next'
-import { MdAdd, MdClose } from 'react-icons/md'
 import styles from './ModalPlaylistTrack.module.scss'
 
 interface IProps {

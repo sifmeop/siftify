@@ -1,9 +1,9 @@
 import type { Playlist as PlaylistType, Track } from '@prisma/client'
+import type { GetStaticProps, NextPage } from 'next'
 
 import Playlist from '@/components/screens/playlist/Playlist'
 import Meta from '@/utils/Meta'
 import { PrismaClient } from '@prisma/client'
-import type { GetStaticProps, NextPage } from 'next'
 
 interface IProps {
   playlist: (PlaylistType & { tracks: Track[] }) | null
@@ -33,7 +33,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   })
 
   return {
-    props: { playlist }
+    props: { playlist },
+    revalidate: 1
   }
 }
 
@@ -42,10 +43,12 @@ export const getStaticPaths = async () => {
 
   const playlists = await prisma.playlist.findMany()
 
+  const paths = playlists.map((playlist) => ({
+    params: { id: playlist.id }
+  }))
+
   return {
-    paths: playlists.map((playlist) => ({
-      params: { id: playlist.id }
-    })),
-    fallback: false
+    paths,
+    fallback: 'blocking'
   }
 }

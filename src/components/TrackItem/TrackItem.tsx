@@ -1,12 +1,9 @@
-import { Dropdown } from 'antd'
-
-import { useFavoritesHook } from '@/hooks/useFavoritesHook'
 import { useIsCurrentTrack } from '@/hooks/useIsCurrentTrack'
 import { useQueue } from '@/hooks/useQueue'
 import { usePlayer } from '@/stores/usePlayer'
-import { usePlaylistStore } from '@/stores/usePlaylistStore'
 import type { Track } from '@prisma/client'
 import type { MenuProps } from 'antd'
+import { Dropdown } from 'antd'
 import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Link from 'next/link'
@@ -27,9 +24,7 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
   const isPlaying = usePlayer((state) => state.isPlaying)
   const isCurrentTrack = useIsCurrentTrack(track.title)
 
-  const { isFav, addToFavorites, deleteFromFavorites } = useFavoritesHook(track)
   const { isInQueue, addToQueue, removeFromQueue } = useQueue(track)
-  const setOpen = usePlaylistStore((state) => state.setOpen)
 
   const items: MenuProps['items'] = [
     {
@@ -41,34 +36,6 @@ const TrackItem: NextPage<IProps> = ({ track, index }) => {
       label: <button onClick={removeFromQueue}>Удалить из очереди</button>,
       key: '2',
       disabled: !isInQueue
-    },
-    { type: 'divider' },
-    {
-      label: (
-        <button onClick={() => void addToFavorites()}>
-          Добавить в любимые
-        </button>
-      ),
-      key: '3',
-      disabled: isFav
-    },
-    {
-      label: (
-        <button onClick={() => void deleteFromFavorites()}>
-          Убрать из избранных
-        </button>
-      ),
-      key: '4',
-      disabled: !isFav
-    },
-    { type: 'divider' },
-    {
-      label: <button onClick={setOpen}>Добавить в плейлист</button>,
-      key: '5'
-    },
-    {
-      label: <button>Удалить из плейлиста</button>,
-      key: '6'
     }
   ]
 

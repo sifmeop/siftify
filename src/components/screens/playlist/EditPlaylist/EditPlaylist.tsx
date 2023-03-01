@@ -5,6 +5,7 @@ import { api } from '@/utils/api'
 import type { Playlist } from '@prisma/client'
 import clsx from 'clsx'
 import type { NextPage } from 'next'
+import { useSession } from 'next-auth/react'
 import { FaEdit } from 'react-icons/fa'
 import styles from './EditPlaylist.module.scss'
 
@@ -19,6 +20,7 @@ interface IState {
 
 const EditPlaylist: NextPage<IProps> = ({ playlist }) => {
   const [open, setOpen] = useState<boolean>(false)
+  const { data: sessionData } = useSession()
 
   const [input, setInput] = useState<IState>({
     name: playlist.name,
@@ -34,6 +36,11 @@ const EditPlaylist: NextPage<IProps> = ({ playlist }) => {
     { enabled: false }
   )
 
+  const { refetch: refetchPlaylists } = api.playlists.getPlaylists.useQuery(
+    { userId: String(sessionData?.user?.id) },
+    { enabled: !!sessionData }
+  )
+
   const handleOnCancel = useCallback(() => {
     setInput({
       name: playlist.name,
@@ -46,11 +53,12 @@ const EditPlaylist: NextPage<IProps> = ({ playlist }) => {
     const editedPlaylist = await refetch()
     if (editedPlaylist) {
       void message.success('Плейлист изменен')
+      await refetchPlaylists()
     } else {
       void message.error('Ошибка изменения плейлиста')
     }
     setOpen(false)
-  }, [refetch])
+  }, [refetch, refetchPlaylists])
 
   return (
     <>
