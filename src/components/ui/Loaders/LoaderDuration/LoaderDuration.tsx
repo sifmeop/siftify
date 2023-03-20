@@ -2,6 +2,7 @@ import ContentLoader from 'react-content-loader'
 
 const LoaderDuration = () => (
   <ContentLoader
+    uniqueKey='duration'
     speed={2}
     width={40}
     height={20}

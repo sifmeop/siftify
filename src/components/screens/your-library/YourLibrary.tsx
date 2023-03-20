@@ -1,19 +1,17 @@
-import { api } from '@/utils/api'
 import CoverPlaylist from 'assets/images/cover-playlist.jpg'
-import type { NextPage } from 'next'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { NextPage } from 'next'
+import type { Playlist } from '@prisma/client'
 import styles from './YourLibrary.module.scss'
+import { useSession } from 'next-auth/react'
 
-const YourLibrary: NextPage = () => {
+interface Props {
+  playlists: Playlist[]
+}
+
+const YourLibrary: NextPage<Props> = ({ playlists }) => {
   const { data: sessionData } = useSession()
-  const userId = String(sessionData?.user?.id)
-
-  const { data: playlists } = api.playlists.getPlaylists.useQuery(
-    { userId },
-    { enabled: !!sessionData }
-  )
 
   return (
     <>
@@ -50,7 +48,7 @@ const YourLibrary: NextPage = () => {
           )}
         </>
       ) : (
-        <h1 className='py-5 text-center'>Нужна регистрация</h1>
+        <h1 className='py-5 text-center'>Нужна войти в аккаунт</h1>
       )}
     </>
   )

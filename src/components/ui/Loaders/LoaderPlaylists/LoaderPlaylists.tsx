@@ -2,6 +2,7 @@ import ContentLoader from 'react-content-loader'
 
 const LoaderPlaylists = () => (
   <ContentLoader
+    uniqueKey='playlists'
     speed={2}
     width={150}
     height={70}

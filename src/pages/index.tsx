@@ -9,7 +9,6 @@ interface Props {
 }
 
 const HomePage: NextPage<Props> = ({ artists }) => {
-  console.log(artists)
   return (
     <>
       <Meta

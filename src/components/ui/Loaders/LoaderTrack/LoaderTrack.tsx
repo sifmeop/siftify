@@ -2,6 +2,7 @@ import ContentLoader from 'react-content-loader'
 
 const LoaderTrack = () => (
   <ContentLoader
+    uniqueKey='track'
     speed={2}
     width={200}
     height={45}

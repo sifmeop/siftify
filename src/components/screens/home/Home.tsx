@@ -1,10 +1,10 @@
 import type { Artist, Track } from '@prisma/client'
 
-import TrackList from '@/components/screens/home/TrackList/TrackList'
-import Loader from '@/components/ui/Loaders/Loader/Loader'
-import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import Loader from '@/components/ui/Loaders/Loader/Loader'
+import type { NextPage } from 'next'
+import TrackList from '@/components/screens/home/TrackList/TrackList'
 import styles from './Home.module.scss'
 
 interface Props {

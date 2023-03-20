@@ -21,10 +21,10 @@ const Equalizer: NextPage<IProps> = ({
           xmlnsXlink='http://www.w3.org/1999/xlink'
           style={{
             display: isPlaying ? 'block' : 'none',
-            margin: 'auto'
+            margin: 'auto',
+            width: '1.5625rem',
+            height: '1.5625rem'
           }}
-          width='1.5625rem'
-          height='1.5625rem'
           viewBox='0 0 100 100'
           preserveAspectRatio='xMidYMid'>
           <g transform='rotate(180 50 50)'>
