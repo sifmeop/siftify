@@ -1,4 +1,4 @@
-import type { Artist, Track } from '@prisma/client'
+import type { Track } from '@prisma/client'
 
 import { Modal } from 'antd'
 import type { NextPage } from 'next'
@@ -8,7 +8,8 @@ interface IProps {
   state: boolean
   setState: (value: boolean) => void
   artist: string
-  tracks: (Track & { artist: Artist })[] | undefined
+  // tracks: (Track & { artist: Artist })[] | undefined
+  tracks: Track[]
 }
 
 const PopupTracks: NextPage<IProps> = ({ state, setState, artist, tracks }) => {

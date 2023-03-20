@@ -1,7 +1,7 @@
+import type { Artist as TypeArtist, Track } from '@prisma/client'
+
 import ArtistCard from '@/components/ArtistCard/ArtistCard'
-import { api } from '@/utils/api'
 import { checkTracksLength } from '@/utils/checkTracksLength'
-import type { Artist as TypeArtist } from '@prisma/client'
 import Checkmark from 'assets/icons/checkmark.svg'
 import type { NextPage } from 'next'
 import Image from 'next/image'
@@ -11,15 +11,11 @@ import styles from './Artist.module.scss'
 import PopupTracks from './PopupTracks/PopupTracks'
 
 interface IProps {
-  artist: TypeArtist
+  artist: TypeArtist & { tracks: Track[] }
 }
 
 const Artist: NextPage<IProps> = ({ artist }) => {
   const [showMore, setShowMore] = useState<boolean>(false)
-
-  const { data: tracks } = api.tracks.getArtistTracks.useQuery({
-    artistId: artist.id
-  })
 
   return (
     <div>
@@ -35,24 +31,26 @@ const Artist: NextPage<IProps> = ({ artist }) => {
         }
         title={artist.name}
         info={
-          tracks
-            ? `${String(tracks.length)} ${checkTracksLength(tracks?.length)}`
+          artist.tracks
+            ? `${String(artist.tracks.length)} ${checkTracksLength(
+                artist.tracks.length
+              )}`
             : ''
         }
       />
       <div className={styles.tracksSection}>
         <div className='mb-5 flex justify-between'>
           <h2>Треки</h2>
-          {tracks && tracks.length > 4 && (
+          {artist.tracks && artist.tracks.length > 4 && (
             <button
               className={styles.showMore}
               onClick={() => setShowMore(true)}>
-              Показать ещё <span>+{tracks?.length - 4}</span>
+              Показать ещё <span>+{artist.tracks.length - 4}</span>
             </button>
           )}
         </div>
         <div className={styles.tracks}>
-          {tracks?.slice(0, 4).map((track) => (
+          {artist.tracks.slice(0, 4).map((track) => (
             <div key={track.id} className={styles.track}>
               <Link href={`/track/${track.id}`}>
                 <Image
@@ -73,7 +71,7 @@ const Artist: NextPage<IProps> = ({ artist }) => {
         </div>
         <PopupTracks
           artist={artist.name}
-          tracks={tracks}
+          tracks={artist.tracks}
           setState={setShowMore}
           state={showMore}
         />

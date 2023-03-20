@@ -1,17 +1,20 @@
-import ArtistTrackList from '@/components/ArtistTrackList/ArtistTrackList'
+import type { Artist, Track } from '@prisma/client'
+
+import TrackList from '@/components/screens/home/TrackList/TrackList'
 import Loader from '@/components/ui/Loaders/Loader/Loader'
-import { api } from '@/utils/api'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Home.module.scss'
 
-const Home: NextPage = () => {
-  const { data: artists } = api.artists.getAll.useQuery()
+interface Props {
+  artists: (Artist & { tracks: Track[] })[]
+}
 
+const Home: NextPage<Props> = ({ artists }) => {
   return (
     <>
-      {artists ? (
+      {artists.length ? (
         artists.map((artist) => (
           <div key={artist.id} className={styles.artist}>
             <div className={styles.artistInfo}>
@@ -28,7 +31,7 @@ const Home: NextPage = () => {
                 <Link href={`/artist/${artist.id}`}>{artist.name}</Link>
               </h1>
             </div>
-            <ArtistTrackList artistId={artist.id} />
+            <TrackList tracks={artist.tracks} />
           </div>
         ))
       ) : (

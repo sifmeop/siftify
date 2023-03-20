@@ -3,17 +3,15 @@
 }
 
 .volumeRange {
-  width: 15rem;
+  @apply h-[0.625rem] w-60 cursor-pointer rounded-[1.875rem] bg-[#dedede] outline-none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #dedede;
-  border-radius: 1.875rem;
-  cursor: pointer;
-  outline: none;
-  &::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    height: 0.625rem;
+  &::-moz-range-thumb {
+    -moz-appearance: none;
+    @apply h-4 w-4 bg-[#29a7fd] opacity-0 transition-opacity duration-300 ease-in-out;
+    border-radius: 1.875rem;
+    margin-top: -0.16rem;
   }
   &::-ms-track {
     appearance: none;
@@ -21,25 +19,20 @@
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply opacity-0 transition-opacity duration-300 ease-in-out;
-    background-color: #29a7fd;
-    height: 1rem;
-    width: 1rem;
+    @apply h-4 w-4 bg-[#29a7fd] opacity-0 transition-opacity duration-300 ease-in-out;
     border-radius: 1.875rem;
     margin-top: -0.16rem;
   }
-  &:active::-webkit-slider-thumb {
+  &::-moz-slider &:active::-webkit-slider-thumb {
     background-color: #14a0ff;
   }
   &:hover::-webkit-slider-thumb {
     @apply visible opacity-100;
   }
   &::-ms-thumb {
-    appearance: none;
-    @apply bg-primary-blue;
+    @apply appearance-none rounded-[1.875rem] bg-primary-blue;
     height: 0.625rem;
     width: 0.625rem;
-    border-radius: 1.875rem;
   }
   @media (max-width: 1024px) {
     width: 7rem;
