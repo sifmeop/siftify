@@ -1,8 +1,8 @@
-import type { Playlist as PlaylistType, Track } from '@prisma/client'
 import type { GetStaticProps, NextPage } from 'next'
+import type { Playlist as PlaylistType, Track } from '@prisma/client'
 
-import Playlist from '@/components/screens/playlist/Playlist'
 import Meta from '@/utils/Meta'
+import Playlist from '@/components/screens/playlist/Playlist'
 import { PrismaClient } from '@prisma/client'
 
 interface IProps {
