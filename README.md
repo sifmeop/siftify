@@ -7,13 +7,13 @@ Music platform using T3 Stack, SCSS module, Tailwind CSS, Ant Design, Zustand
 Clone the project
 
 ```bash
-  git clone https://github.com/sifmeop/siftdos.git
+  git clone https://github.com/sifmeop/siftify.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd siftdos
+  cd siftify
 ```
 
 Install dependencies
