@@ -1,6 +1,5 @@
-import { createTRPCRouter, publicProcedure } from '../trpc'
-
 import { z } from 'zod'
+import { createTRPCRouter, publicProcedure } from '../trpc'
 
 export const favoritesRouter = createTRPCRouter({
   getListFavorites: publicProcedure
